@@ -8,6 +8,7 @@ import {
     Image,
     TouchableOpacity,
     TextInput,
+    StatusBar,
 } from 'react-native';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -61,7 +62,10 @@ export default class AuthorScreen extends Component {
     render() {
         return (
             <View style={{flex :1}}>
-
+                <StatusBar
+                    backgroundColor="#214559"
+                    barStyle="light-content"
+                        />
                 <View style={styles.wrapper}>
                     <View style={styles.row1}>
                         <TouchableOpacity
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 50,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#214559',
         padding: 10,
         justifyContent: 'space-around'
     },
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     textStyle: {
-        color: '#FF6600',
+        color: '#FFFFFF',
         fontFamily: 'Avenir',
         fontSize: 18,
         fontWeight: 'bold',

@@ -80,7 +80,7 @@ const HomeTabs = TabNavigator(
                 backgroundColor: "white",
                 padding: 1
             },
-            inactiveTintColor: '#000000',
+            inactiveTintColor: '#214559',
             activeTintColor: '#FF6600',
             labelStyle: {
                 fontSize: 10 ,
