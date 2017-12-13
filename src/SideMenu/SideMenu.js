@@ -25,6 +25,7 @@ class SideMenu extends Component {
             colorChat: noneBorderMenu,
             colorBooking: noneBorderMenu,
             colorAuthor: noneBorderMenu,
+            colorLogin : noneBorderMenu,
         });
         if (route === 'Home' || route === 'EditProfile') {
             this.setState({
@@ -42,6 +43,10 @@ class SideMenu extends Component {
             this.setState({
                 colorAuthor: colorBorderMenu,
             });
+        } else if (route === 'Login') {
+            this.setState({
+                colorLogin: colorBorderMenu,
+            });
         }
     }
 
@@ -51,7 +56,8 @@ class SideMenu extends Component {
             colorHome: colorBorderMenu,
             colorChat: noneBorderMenu,
             colorBooking: noneBorderMenu,
-            colorAuthor: noneBorderMenu
+            colorAuthor: noneBorderMenu,
+            colorLogin: noneBorderMenu
         }
     }
 
@@ -108,6 +114,18 @@ class SideMenu extends Component {
                                 style={[{ width: 27, height: 27 }]}
                             />
                             <Text style={styles.menuText}>About Me</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={this.navigateToScreen('Login')}
+                                          style={[styles.menu, {
+                                              backgroundColor: this.state.colorLogin,
+                                              borderRadius: 5
+                                          }]}>
+                            <Image
+                                source={require('../screens/images/menu_about.png')}
+                                style={[{ width: 27, height: 27 }]}
+                            />
+                            <Text style={styles.menuText}>Đăng Nhập</Text>
                         </TouchableOpacity>
 
                     </View>

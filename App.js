@@ -19,7 +19,7 @@ import SideMenu from './src/SideMenu/SideMenu.js';
 import BookingScreen from './src/screens/BookingScreen';
 import EditProfileScreen from './src/screens/EditProfileScreen';
 import AuthorScreen from './src/screens/AuthorScreen';
-
+import LoginScreen from './src/screens/LoginScreen';
 const DrawerMenu = DrawerNavigator(
     {
         Home : {
@@ -41,6 +41,10 @@ const DrawerMenu = DrawerNavigator(
         Author :{
             path: '/sent',
             screen: AuthorScreen,
+        },
+        Login :{
+            path: '/sent',
+            screen: LoginScreen,
         },
     },
     {
