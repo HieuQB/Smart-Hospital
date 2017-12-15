@@ -18,36 +18,19 @@ class FlatListItem extends Component {
             <View style={{
                 flex: 1,
                 flexDirection: 'column',
-                width:250,
-                height:200,
+                elevation:5,
+                backgroundColor:'#ccc',
+                width:100,
+                height:170,
+                margin:10,
+                marginEnd:5,
+                borderRadius:10,
             }}>
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    // backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen': 'tomato'
-                    backgroundColor: 'mediumseagreen'
-                }}>
-                    <Image
-                        source={{uri: this.props.item.imageUrl}}
-                        style={{width: 100, height: 100, margin: 5}}
-                    >
-
-                    </Image>
-                    <View style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        height: 100
-                    }}>
-                        <Text style={styles.flatListItem}>{this.props.item.name}</Text>
-                        <Text style={styles.flatListItem}>{this.props.item.foodDescription}</Text>
-                    </View>
-                </View>
-                <View style={{
-                    height: 1,
-                    backgroundColor: 'white'
-                }}>
-
-                </View>
+                <Image
+                    source={{uri: this.props.item.imageUrl}}
+                    style={[{ width: 100, height: 100 ,borderRadius:10}]}
+                />
+                <Text style={styles.flatListItem}>{this.props.item.name}</Text>
             </View>
         );
     }
@@ -242,30 +225,6 @@ export default class InforScreen extends Component {
                             borderTopLeftRadius: 0,
                             elevation: 10,
                             width: 150,
-                            paddingStart: 40,
-                            fontWeight: 'bold',
-                            marginTop: 6,
-                            marginStart: 5,
-                        }}>
-                        Chỉ đường
-                    </Text>
-                    <MapView style={{flex: 1, width: 200, height: 200}} initialRegion={this.state.region}>
-
-                        <MapView.Marker title={'Đây là bệnh viện gì đó'} description={'Mô tả về bv'}
-                                        coordinate={this.state.region}/>
-
-                    </MapView>
-
-                    <Text
-                        style={{
-                            backgroundColor: '#ff3533',
-                            color: 'white',
-                            padding: 5,
-                            borderRadius: 10,
-                            borderBottomLeftRadius: 0,
-                            borderTopLeftRadius: 0,
-                            elevation: 10,
-                            width: 150,
                             paddingStart: 20,
                             fontWeight: 'bold',
                             marginTop: 6,
@@ -337,6 +296,29 @@ export default class InforScreen extends Component {
 
                     </View>
 
+                    <Text
+                        style={{
+                            backgroundColor: '#ff3533',
+                            color: 'white',
+                            padding: 5,
+                            borderRadius: 10,
+                            borderBottomLeftRadius: 0,
+                            borderTopLeftRadius: 0,
+                            elevation: 10,
+                            width: 150,
+                            paddingStart: 40,
+                            fontWeight: 'bold',
+                            marginTop: 6,
+                            marginStart: 5,
+                        }}>
+                        Chỉ đường
+                    </Text>
+                    <MapView style={{flex: 1, height: 200}} initialRegion={this.state.region}>
+
+                        <MapView.Marker title={'Đây là bệnh viện gì đó'} description={'Mô tả về bv'}
+                                        coordinate={this.state.region}/>
+
+                    </MapView>
 
                 </View>
 
