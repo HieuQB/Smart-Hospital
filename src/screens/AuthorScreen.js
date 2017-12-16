@@ -65,7 +65,7 @@ export default class AuthorScreen extends Component {
                 <StatusBar
                     backgroundColor="#337f9d"
                     barStyle="light-content"
-                        />
+                />
                 <View style={styles.wrapper}>
                     <View style={styles.row1}>
                         <TouchableOpacity

@@ -10,7 +10,6 @@ import {
     FlatList,
 } from 'react-native';
 import Slideshow from 'react-native-slideshow';
-import MapView from 'react-native-maps';
 
 class FlatListItem extends Component {
     render() {
@@ -78,7 +77,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class InforScreen extends Component {
+
+export default class InforScreen extends Component{
 
     constructor(props) {
         super(props);
@@ -101,12 +101,6 @@ export default class InforScreen extends Component {
                     url: require('../images/3.jpg'),
                 },
             ],
-            region: {
-                latitude: 21.0242225,
-                longitude: 105.8207913,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01,
-            },
         };
     }
 
@@ -374,12 +368,6 @@ export default class InforScreen extends Component {
                         }}>
                         Chỉ đường
                     </Text>
-                    <MapView style={{flex: 1, height: 200}} initialRegion={this.state.region}>
-
-                        <MapView.Marker title={'Đây là bệnh viện gì đó'} description={'Mô tả về bv'}
-                                        coordinate={this.state.region}/>
-
-                    </MapView>
 
                 </View>
 
