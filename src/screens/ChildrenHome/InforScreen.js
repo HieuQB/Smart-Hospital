@@ -20,17 +20,46 @@ class FlatListItem extends Component {
                 flexDirection: 'column',
                 elevation:5,
                 backgroundColor:'#ccc',
-                width:100,
-                height:170,
+                width:120,
+                height:250,
                 margin:10,
                 marginEnd:5,
                 borderRadius:10,
             }}>
                 <Image
                     source={{uri: this.props.item.imageUrl}}
-                    style={[{ width: 100, height: 100 ,borderRadius:10}]}
+                    style={[{ width: 120, height: 130 ,borderRadius:10}]}
                 />
+
                 <Text style={styles.flatListItem}>{this.props.item.name}</Text>
+
+                <View style={{flexDirection:'row',marginStart:8}}>
+                    <Image
+                        source={require('../images/star.png')}
+                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                    />
+                    <Image
+                        source={require('../images/star.png')}
+                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                    />
+                    <Image
+                        source={require('../images/star.png')}
+                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                    />
+                    <Image
+                        source={require('../images/star.png')}
+                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                    />
+                    <Image
+                        source={require('../images/star.png')}
+                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                    />
+                </View>
+
+                <View style={{height:2, backgroundColor:'#337f9d', marginTop:5}}/>
+
+                <Text style={styles.flatListItem}>{this.props.item.khoa}</Text>
+
             </View>
         );
     }
@@ -38,9 +67,14 @@ class FlatListItem extends Component {
 
 const styles = StyleSheet.create({
     flatListItem: {
-        color: 'white',
+        height:45,
+        color: 'black',
         padding: 10,
-        fontSize: 16,
+        paddingBottom:5,
+        paddingEnd:5,
+        paddingTop:5,
+        fontSize: 14,
+        alignItems:'center',
     }
 });
 
@@ -94,45 +128,45 @@ export default class InforScreen extends Component {
         var flatListData = [
             {
                 "key": "598a678278fee204ee51cd2c",
-                "name": "Cream Tea",
+                "name": "PGS TS Nguyễn Minh Hiếu",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Cornish_cream_tea_2.jpg",
-                "foodDescription": "This is a cup of cream tea"
+                "khoa": "Truyền Nhiễm"
             },
             {
                 "key": "598a684f78fee204ee51cd2f",
-                "name": "Fresh mushroom",
+                "name": "PGS TS Nguyễn Minh Hiếu",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Lactarius_indigo_48568.jpg",
-                "foodDescription": "Fresh mushroom with vegetables. This is a long line, this is a long line, this is a long line,this is a long line,this is a long line"
+                "khoa": "Khoa Sản"
             },
             {
                 "key": "598a687678fee204ee51cd30",
-                "name": "Japanese Oyster",
+                "name": "ThS BS Nguyễn Tuấn Anh",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Oysters_served_on_ice%2C_with_lemon_and_parsley.jpg",
-                "foodDescription": "Oysters with ice rock"
+                "khoa": "Di Truyền & Sinh vật học phân tử"
             },
             {
                 "key": "598a680178fee204ee51cd2e",
-                "name": "Korean Kimchi",
+                "name": "ThS BS Nguyễn Tuấn Anh",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Yeolmukimchi_3.jpg",
-                "foodDescription": "Traditional Korean Food"
+                "khoa": "Răng Hàm Mặt"
             },
             {
                 "key": "598a688878fee204ee51cd31",
-                "name": "Multiple salad",
+                "name": "ThS BS Nguyễn Tuấn Anh",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg",
-                "foodDescription": "Salad mixed with mushroom"
+                "khoa": "Răng Hàm Mặt"
             },
             {
                 "key": "598a68b778fee204ee51cd32",
-                "name": "Vegetable",
+                "name": "ThS BS Nguyễn Tuấn Anh",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Vegetable_Cart_in_Guntur.jpg",
-                "foodDescription": "Fresh vegetables"
+                "khoa": "Nội Thần Kinh"
             },
             {
                 "key": "598a67c478fee204ee51cd2d",
-                "name": "traditional japanese salad",
+                "name": "Nguyễn Tuấn Anh",
                 "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Simple_somen.jpg",
-                "foodDescription": "Very delicious Japanese Salad"
+                "khoa": "Chấn thương chỉnh hình"
             }
         ];
 
@@ -169,14 +203,14 @@ export default class InforScreen extends Component {
                         <View style={{
                             flex: 1,
                             flexDirection: 'column',
-                            backgroundColor: '#214559',
+                            backgroundColor: '#337f9d',
                             elevation: 5,
                             borderRadius: 5
                         }}>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/map.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
@@ -185,7 +219,7 @@ export default class InforScreen extends Component {
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/focus.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
@@ -194,7 +228,7 @@ export default class InforScreen extends Component {
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/1608931-128.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
@@ -203,7 +237,25 @@ export default class InforScreen extends Component {
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/if_Time_Machine-01_72122.png')}
+                                    style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
+                                />
+                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
+                                    Minh</Text>
+                            </View>
+
+                            <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
+                                <Image
+                                    source={require('../images/if_Burn-01_72105.png')}
+                                    style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
+                                />
+                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
+                                    Minh</Text>
+                            </View>
+
+                            <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
+                                <Image
+                                    source={require('../images/if_Aiport_Utility-01_72104.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
@@ -269,14 +321,14 @@ export default class InforScreen extends Component {
                         <View style={{
                             flex: 1,
                             flexDirection: 'column',
-                            backgroundColor: '#214559',
+                            backgroundColor: '#337f9d',
                             elevation: 5,
                             borderRadius: 5
                         }}>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/if_viber_328079.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
@@ -285,7 +337,16 @@ export default class InforScreen extends Component {
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/search.png')}
+                                    source={require('../images/mail.png')}
+                                    style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
+                                />
+                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
+                                    Minh</Text>
+                            </View>
+
+                            <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
+                                <Image
+                                    source={require('../images/if_Globe1_34224.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí

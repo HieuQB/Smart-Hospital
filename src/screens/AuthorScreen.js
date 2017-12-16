@@ -35,24 +35,24 @@ export default class AuthorScreen extends Component {
         this.state = {
             data: [
                 {
-                    title: "Hello World",
-                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard",
-                    image: require('./images/1.jpg')
+                    title: "Nguyễn Minh Hiếu",
+                    text: "Kẻ thù lớn nhất cuộc đời là chính bản thân bạn.",
+                    image: require('./images/hieu.jpg')
                 },
                 {
-                    title: "Lorem Ipsum",
-                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard",
-                    image: require('./images/2.jpg')
+                    title: "Hoàng Kim Tuấn",
+                    text: "Để có thể vươn cao trên bầu trời bạn cần có một nền móng vững chắc",
+                    image: require('./images/tuan.jpg')
                 },
                 {
-                    title: "Lorem Ipsum",
-                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard",
-                    image: require('./images/3.jpg')
+                    title: "Trần Thị Minh Trang",
+                    text: "Thức dậy với quyết tâm, đi ngủ với sự hài lòng",
+                    image: require('./images/Trang.jpg')
                 },
                 {
-                    title: "Lorem Ipsum",
-                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard",
-                    image: require('./images/4.jpg')
+                    title: "GVHD : Ths Huỳnh Tuấn Anh",
+                    text: "Làm sai thì bị phạt, làm đúng thì bị thu thuế",
+                    image: require('./images/Thay.jpg')
                 },
 
             ]
@@ -63,7 +63,7 @@ export default class AuthorScreen extends Component {
         return (
             <View style={{flex :1}}>
                 <StatusBar
-                    backgroundColor="#214559"
+                    backgroundColor="#337f9d"
                     barStyle="light-content"
                         />
                 <View style={styles.wrapper}>
@@ -105,9 +105,10 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 50,
-        backgroundColor: '#214559',
+        backgroundColor: '#337f9d',
         padding: 10,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginBottom:40,
     },
     row1: {
         flexDirection: 'row',

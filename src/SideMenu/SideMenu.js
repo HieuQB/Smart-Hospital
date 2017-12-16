@@ -122,7 +122,7 @@ class SideMenu extends Component {
                                               borderRadius: 5
                                           }]}>
                             <Image
-                                source={require('../screens/images/menu_about.png')}
+                                source={require('../screens/images/menu_login.png')}
                                 style={[{ width: 27, height: 27 }]}
                             />
                             <Text style={styles.menuText}>Đăng Nhập</Text>

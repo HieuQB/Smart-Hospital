@@ -31,7 +31,7 @@ export default class LoginScreen extends Component {
         return (
             <View style={{flex: 1,}}>
                 <StatusBar
-                    backgroundColor="#214559"
+                    backgroundColor="#337f9d"
                     barStyle="light-content"
                 />
                 <View style={styles.wrapper}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 50,
-        backgroundColor: '#214559',
+        backgroundColor: '#337f9d',
         padding: 10,
         justifyContent: 'space-around'
     },
