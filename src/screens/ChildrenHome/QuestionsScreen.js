@@ -34,7 +34,7 @@ class FlatListItem extends Component {
                     borderRadius: 8,
                 }}>
 
-                    <Text style={{color: '#ffffff', fontSize: 14,}}>{this.props.item.name}</Text>
+                    <Text style={{color: '#ffffff', fontSize: 14,}}>{this.props.item.title}</Text>
                 </View>
 
                 <View style={{flexDirection: 'row',margin:6}}>
@@ -47,20 +47,20 @@ class FlatListItem extends Component {
                     />
 
                     <View style={{marginStart:10}}>
-                        <Text style={{color:'#383838'}}>Minh Hiếu - 21 tuổi</Text>
-                        <Text style={{color:'#9b9b9b', fontSize:12}}>Đã hỏi 1 ngày trước</Text>
+                        <Text style={{color:'#383838'}}>{this.props.item.userName} - {this.props.item.userAge} tuổi</Text>
+                        <Text style={{color:'#9b9b9b', fontSize:12}}>Đã hỏi {this.props.item.userTime} ngày trước</Text>
                     </View>
 
                 </View>
 
-                <Text style={{backgroundColor:'#e3e3e3', color:'#383838', borderRadius:7,padding:5, height:62,marginStart:5,marginEnd:5}}>Kính gửi bác sĩ xét nghiệm, cháu vừa làm xét nghiệm máu, đây là kết quả của cháu mong bác sĩ .....</Text>
+                <Text style={{backgroundColor:'#e3e3e3', color:'#383838', borderRadius:7,padding:5, height:62,marginStart:5,marginEnd:5}}>{this.props.item.userQuestion}</Text>
 
 
                 <View style={{flexDirection: 'row',margin:6,alignItems:'flex-end',justifyContent:'flex-end'}}>
 
                     <View style={{marginStart:10}}>
-                        <Text style={{color:'#383838'}}>BS Nguyễn Minh Hiếu</Text>
-                        <Text style={{color:'#9b9b9b', fontSize:12}}>Đã trả lời 1 ngày trước</Text>
+                        <Text style={{color:'#383838'}}>BS {this.props.item.doctorName}</Text>
+                        <Text style={{color:'#9b9b9b', fontSize:12}}>Đã trả lời {this.props.item.doctorTime} ngày trước</Text>
                     </View>
 
                     <Image style={{
@@ -73,11 +73,11 @@ class FlatListItem extends Component {
 
                 </View>
 
-                <Text style={{backgroundColor:'#57e342', color:'#ffffff', borderRadius:7,padding:5, height:78,marginStart:5,marginEnd:5}}>Kính gửi bác sĩ xét nghiệm, cháu vừa làm xét nghiệm máu, đây là kết quả của cháu mong bác sĩ xem xét cho cháu nhaaaaa.....</Text>
+                <Text style={{backgroundColor:'#57e342', color:'#ffffff', borderRadius:7,padding:5, height:78,marginStart:5,marginEnd:5}}>{this.props.item.doctorAnswer}</Text>
                 <View style={{height:2, backgroundColor: '#68a2cb', marginTop:5}}/>
                 <View style={{justifyContent:'center', flex:1, alignItems:'center'}}>
 
-                    <Text style={{ color:'#ff3533'}}>Sản khoa</Text>
+                    <Text style={{ color:'#ff3533'}}>{this.props.item.category}</Text>
                 </View>
             </View>
         );
@@ -143,46 +143,53 @@ export default class QuestionsScreen extends Component {
         var flatListData = [
             {
                 "key": "598a678278fee204ee51cd2c",
-                "name": "PGS TS Nguyễn Minh Hiếu",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Cornish_cream_tea_2.jpg",
-                "khoa": "Truyền Nhiễm"
+                "title": "Kết quả siêu âm?",
+                "userName": "Nguyễn Minh Hiếu",
+                "userAge": "21",
+                "userTime":"3",
+                "userQuestion" : "câu hỏi của em là em chả biết hỏi gì cả nha",
+                "doctorName":"Hoàng Kim Tuấn",
+                "doctorTime":"1",
+                "doctorAnswer":"em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
+                "category":"Răng Hàm Mặt"
             },
             {
-                "key": "598a684f78fee204ee51cd2f",
-                "name": "PGS TS Nguyễn Minh Hiếu",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Lactarius_indigo_48568.jpg",
-                "khoa": "Khoa Sản"
+                "key": "598a678278fee204ee51cd2c",
+                "title": "Kết quả siêu âm?",
+                "userName": "Nguyễn Minh Hiếu",
+                "userAge": "21",
+                "userTime":"3",
+                "userQuestion" : "câu hỏi của em là em chả biết hỏi gì cả nha",
+                "doctorName":"Hoàng Kim Tuấn",
+                "doctorTime":"1",
+                "doctorAnswer":"em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
+                "category":"Răng Hàm Mặt"
             },
             {
-                "key": "598a687678fee204ee51cd30",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Oysters_served_on_ice%2C_with_lemon_and_parsley.jpg",
-                "khoa": "Di Truyền & Sinh vật học phân tử"
+                "key": "598a678278fee204ee51cd2c",
+                "title": "Kết quả siêu âm?",
+                "userName": "Nguyễn Minh Hiếu",
+                "userAge": "21",
+                "userTime":"3",
+                "userQuestion" : "câu hỏi của em là em chả biết hỏi gì cả nha",
+                "doctorName":"Hoàng Kim Tuấn",
+                "doctorTime":"1",
+                "doctorAnswer":"em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
+                "category":"Răng Hàm Mặt"
             },
             {
-                "key": "598a680178fee204ee51cd2e",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Yeolmukimchi_3.jpg",
-                "khoa": "Răng Hàm Mặt"
+                "key": "598a678278fee204ee51cd2c",
+                "title": "Kết quả siêu âm?",
+                "userName": "Nguyễn Minh Hiếu",
+                "userAge": "21",
+                "userTime":"3",
+                "userQuestion" : "câu hỏi của em là em chả biết hỏi gì cả nha",
+                "doctorName":"Hoàng Kim Tuấn",
+                "doctorTime":"1",
+                "doctorAnswer":"em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
+                "category":"Răng Hàm Mặt"
             },
-            {
-                "key": "598a688878fee204ee51cd31",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg",
-                "khoa": "Răng Hàm Mặt"
-            },
-            {
-                "key": "598a68b778fee204ee51cd32",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Vegetable_Cart_in_Guntur.jpg",
-                "khoa": "Nội Thần Kinh"
-            },
-            {
-                "key": "598a67c478fee204ee51cd2d",
-                "name": "Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Simple_somen.jpg",
-                "khoa": "Chấn thương chỉnh hình"
-            }
+
         ];
 
 

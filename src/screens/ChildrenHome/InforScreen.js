@@ -57,8 +57,9 @@ class FlatListItem extends Component {
 
                 <View style={{height:2, backgroundColor:'#337f9d', marginTop:5}}/>
 
-                <Text style={styles.flatListItem}>{this.props.item.khoa}</Text>
-
+                <View style={{justifyContent:'center', flex:1, alignItems:'center'}}>
+                    <Text style={styles.flatListItem}>{this.props.item.khoa}</Text>
+                </View>
             </View>
         );
     }

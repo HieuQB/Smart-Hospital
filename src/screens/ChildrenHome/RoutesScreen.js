@@ -37,10 +37,10 @@ const HomeTabs = TabNavigator(
             screen: QuestionsScreen,
             path: 'pic',
             navigationOptions: {
-                tabBarLabel: 'Tìm kiếm',
+                tabBarLabel: 'Hỏi-Đáp',
                 tabBarIcon: ({ tintColor }) => (
                     <Image
-                        source={require('../images/search.png')}
+                        source={require('../images/answer.png')}
                         style={[{ width: 15, height: 15 }, { tintColor: tintColor }]}
                     />
                 ),
