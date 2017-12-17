@@ -12,7 +12,7 @@ import { TabNavigator } from "react-navigation";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CostScreen from './CostScreen';
 import InforScreen from './InforScreen';
-import PictureScreen from './SearchScreen';
+import QuestionsScreen from './QuestionsScreen';
 import TimeLineScreen from './TimeLineScreen';
 
 
@@ -33,8 +33,8 @@ const HomeTabs = TabNavigator(
             },
         },
 
-        Picture: {
-            screen: PictureScreen,
+        Question: {
+            screen: QuestionsScreen,
             path: 'pic',
             navigationOptions: {
                 tabBarLabel: 'Tìm kiếm',

@@ -14,53 +14,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 export default class ChatScreen extends Component {
-    constructor(props) {
-        super(props);
-
-        GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
-            // play services are available. can now configure library
-        })
-            .catch((err) => {
-                console.log("Play services error", err.code, err.message);
-            })
-
-        GoogleSignin.configure({
-            scopes: ["https://www.googleapis.com/auth/drive.readonly"], // what API you want to access on behalf of the user, default is email and profile
-                offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-                hostedDomain: '', // specifies a hosted domain restriction
-                forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login
-                accountName: '' // [Android] specifies an account name on the device that should be used
-                })
-                .then(() => {
-                    GoogleSignin.currentUserAsync().then((user) => {
-                        console.log('USER', user);
-                        this.setState({user: user});
-                    }).done();
-                });
-    }
-
-    _signIn() {
-        GoogleSignin.signIn()
-            .then((user) => {
-                console.log(user);
-                this.setState({user: user});
-            })
-            .catch((err) => {
-                console.log('WRONG SIGNIN', err);
-            })
-            .done();
-    }
-
-    _signOut() {
-        GoogleSignin.signOut()
-            .then(() => {
-                console.log('out');
-            })
-            .catch((err) => {
-
-            });
-    }
-
     static navigationOptions = {
         tabBarLabel: 'Chat',
         drawerIcon: ({tintColor}) => {
@@ -94,18 +47,9 @@ export default class ChatScreen extends Component {
                     </View>
                 </View>
 
-                {/*<Text style={{fontSize:30, color:'green'}}>*/}
-                    {/*Màn hình Chat*/}
-                {/*</Text>*/}
-                <GoogleSigninButton
-                    style={{width: 48, height: 48}}
-                    size={GoogleSigninButton.Size.Icon}
-                    color={GoogleSigninButton.Color.Dark}
-                    onPress={this._signIn.bind(this)}/>
-
-                <TouchableOpacity onPress={this._signOut.bind(this)}>
-                    <Text>SignOut</Text>
-                </TouchableOpacity>
+                <Text style={{fontSize:30, color:'green'}}>
+                    Màn hình Chat
+                </Text>
 
             </View>
         );

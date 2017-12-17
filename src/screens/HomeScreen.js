@@ -12,10 +12,9 @@ import {
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HomeTabs from './ChildrenHome/RoutesScreen';
+import {GoogleSignin} from "react-native-google-signin";
 
 export default class HomeScreen extends Component {
-
-
     static navigationOptions = {
         tabBarLabel: 'Home',
         drawerIcon: ({tintColor}) => {

@@ -9,15 +9,15 @@ import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import {GoogleSignin} from "react-native-google-signin";
 
 const colorBorderMenu = 'rgba(255,255,255,0.3)';
 const noneBorderMenu = 'rgba(255,255,255,0)';
 
 class SideMenu extends Component {
-
     navigateToScreen = (route) => () => {
-                const navigateAction = NavigationActions.navigate({
-                    routeName: route
+        const navigateAction = NavigationActions.navigate({
+            routeName: route
         });
         this.props.navigation.dispatch(navigateAction);
         this.setState({
@@ -25,7 +25,7 @@ class SideMenu extends Component {
             colorChat: noneBorderMenu,
             colorBooking: noneBorderMenu,
             colorAuthor: noneBorderMenu,
-            colorLogin : noneBorderMenu,
+            colorLogin: noneBorderMenu,
         });
         if (route === 'Home' || route === 'EditProfile') {
             this.setState({
@@ -57,9 +57,35 @@ class SideMenu extends Component {
             colorChat: noneBorderMenu,
             colorBooking: noneBorderMenu,
             colorAuthor: noneBorderMenu,
-            colorLogin: noneBorderMenu
+            colorLogin: noneBorderMenu,
+            user: {
+                photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
+                name: 'UIT'
+            }
         }
+
+        GoogleSignin.hasPlayServices({autoResolve: true}).then(() => {
+            // play services are available. can now configure library
+        })
+            .catch((err) => {
+                console.log("Play services error", err.code, err.message);
+            })
+
+        GoogleSignin.configure({
+            scopes: ["https://www.googleapis.com/auth/drive.readonly"], // what API you want to access on behalf of the user, default is email and profile
+            offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+            hostedDomain: '', // specifies a hosted domain restriction
+            forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login
+            accountName: '' // [Android] specifies an account name on the device that should be used
+        })
+            .then(() => {
+                GoogleSignin.currentUserAsync().then((user) => {
+                    console.log('USER', user);
+                    this.setState({user: user});
+                }).done();
+            });
     }
+
 
     render() {
         return (
@@ -77,7 +103,7 @@ class SideMenu extends Component {
                             {/*<Icon name='home' color={colors.txtWhite} size={24}/>*/}
                             <Image
                                 source={require('../screens/images/menu_home.png')}
-                                style={[{ width: 25, height: 25 }]}
+                                style={[{width: 25, height: 25}]}
                             />
                             <Text style={styles.menuText}>Trang Chủ</Text>
                         </TouchableOpacity>
@@ -87,7 +113,7 @@ class SideMenu extends Component {
                             onPress={this.navigateToScreen('Chat')}>
                             <Image
                                 source={require('../screens/images/menu_chat.png')}
-                                style={[{ width: 27, height: 27 }]}
+                                style={[{width: 27, height: 27}]}
                             />
                             <Text style={styles.menuText}>Chat</Text>
                         </TouchableOpacity>
@@ -99,7 +125,7 @@ class SideMenu extends Component {
                                           }]}>
                             <Image
                                 source={require('../screens/images/menu_booking.png')}
-                                style={[{ width: 27, height: 27 }]}
+                                style={[{width: 27, height: 27}]}
                             />
                             <Text style={styles.menuText}>Đặt lịch khám</Text>
                         </TouchableOpacity>
@@ -111,22 +137,36 @@ class SideMenu extends Component {
                                           }]}>
                             <Image
                                 source={require('../screens/images/menu_about.png')}
-                                style={[{ width: 27, height: 27 }]}
+                                style={[{width: 27, height: 27}]}
                             />
                             <Text style={styles.menuText}>About Me</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={this.navigateToScreen('Login')}
-                                          style={[styles.menu, {
-                                              backgroundColor: this.state.colorLogin,
-                                              borderRadius: 5
-                                          }]}>
-                            <Image
-                                source={require('../screens/images/menu_login.png')}
-                                style={[{ width: 27, height: 27 }]}
-                            />
-                            <Text style={styles.menuText}>Đăng Nhập</Text>
-                        </TouchableOpacity>
+                        {this.state.user === {
+                            photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
+                            name: 'UIT'
+                        } ? <TouchableOpacity onPress={this.navigateToScreen('Login')}
+                                              style={[styles.menu, {
+                                                  backgroundColor: this.state.colorLogin,
+                                                  borderRadius: 5
+                                              }]}>
+                                <Image
+                                    source={require('../screens/images/menu_login.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Đăng Nhập</Text>
+                            </TouchableOpacity>
+                            : <TouchableOpacity onPress={this._signOut.bind(this)}
+                                                style={[styles.menu, {
+                                                    backgroundColor: this.state.colorLogin,
+                                                    borderRadius: 5
+                                                }]}>
+                                <Image
+                                    source={require('../screens/images/menu_login.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Đăng Xuất</Text>
+                            </TouchableOpacity>}
 
                     </View>
                 </View>
@@ -134,15 +174,34 @@ class SideMenu extends Component {
         )
     }
 
+    _signOut() {
+        GoogleSignin.signOut()
+            .then(() => {
+                console.log('out');
+                this.setState({
+                    user: {
+                        photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
+                        name: 'UIT'
+                    }
+                });
+                alert("Đăng xuất thành công!");
+            })
+            .catch((err) => {
+
+            });
+    }
+
     _renderHeader() {
         return (
             <View style={styles.header}>
                 <View style={styles.userInfosHolder}>
                     <Image style={styles.avatar}
-                           source={require('../screens/images/1.jpg')}/>
+                           source={{uri: this.state.user.photo}}/>
                     <View style={styles.userInfos}>
-                        <Text onPress={this.navigateToScreen('EditProfile')} style={styles.username}>Hiếu Minh</Text>
-                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>View and edit profile</Text>
+                        <Text onPress={this.navigateToScreen('EditProfile')}
+                              style={styles.username}>{this.state.user.name}</Text>
+                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>View and
+                            edit profile</Text>
                     </View>
 
                 </View>
@@ -199,7 +258,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     menu: {
-        marginBottom:7,
+        marginBottom: 7,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,

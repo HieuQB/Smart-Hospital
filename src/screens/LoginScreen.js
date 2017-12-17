@@ -11,8 +11,31 @@ import {
     StatusBar,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {GoogleSignin, GoogleSigninButton} from "react-native-google-signin";
 
 export default class LoginScreen extends Component {
+    _signIn() {
+        GoogleSignin.signIn()
+            .then((user) => {
+                console.log(user);
+                this.setState({user: user});
+            })
+            .catch((err) => {
+                console.log('WRONG SIGNIN', err);
+            })
+            .done();
+    }
+
+    _signOut() {
+        GoogleSignin.signOut()
+            .then(() => {
+                console.log('out');
+            })
+            .catch((err) => {
+
+            });
+    }
+
     static navigationOptions = {
         tabBarLabel: 'Login',
         drawerIcon: ({tintColor}) => {
@@ -46,9 +69,11 @@ export default class LoginScreen extends Component {
                     </View>
                 </View>
 
-                <Text style={{fontSize:30, color:'green'}}>
-                    Màn hình đăng nhập
-                </Text>
+                <GoogleSigninButton
+                    style={{width: 200, height: 48}}
+                    size={GoogleSigninButton.Size.Icon}
+                    color={GoogleSigninButton.Color.Dark}
+                    onPress={this._signIn.bind(this)}/>
 
             </View>
         );
