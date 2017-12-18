@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "818544069178-9j1krnq0tfrm048n17bgtbiq5j9ne38c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smarthospital",
+            "certificate_hash": "f63395cb873bf5d5517697f11e676ba9df6c6646"
+          }
+        },
+        {
           "client_id": "818544069178-64e9i7pkmstkn3jot4c8dfoo6vhf8lni.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

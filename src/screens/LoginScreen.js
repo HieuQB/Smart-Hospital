@@ -26,16 +26,6 @@ export default class LoginScreen extends Component {
             .done();
     }
 
-    _signOut() {
-        GoogleSignin.signOut()
-            .then(() => {
-                console.log('out');
-            })
-            .catch((err) => {
-
-            });
-    }
-
     static navigationOptions = {
         tabBarLabel: 'Login',
         drawerIcon: ({tintColor}) => {

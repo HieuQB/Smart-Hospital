@@ -10,6 +10,7 @@ import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {GoogleSignin} from "react-native-google-signin";
+import renderIf from 'render-if';
 
 const colorBorderMenu = 'rgba(255,255,255,0.3)';
 const noneBorderMenu = 'rgba(255,255,255,0)';
@@ -58,10 +59,7 @@ class SideMenu extends Component {
             colorBooking: noneBorderMenu,
             colorAuthor: noneBorderMenu,
             colorLogin: noneBorderMenu,
-            user: {
-                photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
-                name: 'UIT'
-            }
+            user: null
         }
 
         GoogleSignin.hasPlayServices({autoResolve: true}).then(() => {
@@ -141,32 +139,34 @@ class SideMenu extends Component {
                             />
                             <Text style={styles.menuText}>About Me</Text>
                         </TouchableOpacity>
+                        {renderIf(this.state.user == null)(
+                            <TouchableOpacity onPress={this._signIn.bind(this)}
+                                            style={[styles.menu, {
+                                                backgroundColor: this.state.colorLogin,
+                                                borderRadius: 5
+                                            }]}>
+                            <Image
+                                source={require('../screens/images/menu_login.png')}
+                                style={[{width: 27, height: 27}]}
+                            />
+                            <Text style={styles.menuText}>Đăng Nhập</Text>
+                        </TouchableOpacity>
+                        )}
 
-                        {this.state.user === {
-                            photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
-                            name: 'UIT'
-                        } ? <TouchableOpacity onPress={this.navigateToScreen('Login')}
-                                              style={[styles.menu, {
-                                                  backgroundColor: this.state.colorLogin,
-                                                  borderRadius: 5
-                                              }]}>
-                                <Image
-                                    source={require('../screens/images/menu_login.png')}
-                                    style={[{width: 27, height: 27}]}
-                                />
-                                <Text style={styles.menuText}>Đăng Nhập</Text>
-                            </TouchableOpacity>
-                            : <TouchableOpacity onPress={this._signOut.bind(this)}
-                                                style={[styles.menu, {
-                                                    backgroundColor: this.state.colorLogin,
-                                                    borderRadius: 5
-                                                }]}>
-                                <Image
-                                    source={require('../screens/images/menu_login.png')}
-                                    style={[{width: 27, height: 27}]}
-                                />
-                                <Text style={styles.menuText}>Đăng Xuất</Text>
-                            </TouchableOpacity>}
+                            {renderIf(this.state.user != null)(
+                                <TouchableOpacity onPress={this._signOut.bind(this)}
+                                style={[styles.menu, {
+                                    backgroundColor: this.state.colorLogin,
+                                    borderRadius: 5
+                                }]}>
+                            <Image
+                                source={require('../screens/images/menu_login.png')}
+                                style={[{width: 27, height: 27}]}
+                            />
+                            <Text style={styles.menuText}>Đăng Xuất</Text>
+                                    </TouchableOpacity>
+                        )}
+                     
 
                     </View>
                 </View>
@@ -174,16 +174,23 @@ class SideMenu extends Component {
         )
     }
 
+    _signIn() {
+        GoogleSignin.signIn()
+            .then((user) => {
+                console.log(user);
+                this.setState({user: user});
+            })
+            .catch((err) => {
+                console.log('WRONG SIGNIN', err);
+            })
+            .done();
+    }
+
     _signOut() {
         GoogleSignin.signOut()
             .then(() => {
                 console.log('out');
-                this.setState({
-                    user: {
-                        photo: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
-                        name: 'UIT'
-                    }
-                });
+                this.setState({user: null});
                 alert("Đăng xuất thành công!");
             })
             .catch((err) => {
@@ -196,10 +203,10 @@ class SideMenu extends Component {
             <View style={styles.header}>
                 <View style={styles.userInfosHolder}>
                     <Image style={styles.avatar}
-                           source={{uri: this.state.user.photo}}/>
+                           source={{uri: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg'}}/>
                     <View style={styles.userInfos}>
                         <Text onPress={this.navigateToScreen('EditProfile')}
-                              style={styles.username}>{this.state.user.name}</Text>
+                              style={styles.username}>UIT</Text>
                         <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>View and
                             edit profile</Text>
                     </View>
