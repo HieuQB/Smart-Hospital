@@ -59,7 +59,11 @@ class SideMenu extends Component {
             colorBooking: noneBorderMenu,
             colorAuthor: noneBorderMenu,
             colorLogin: noneBorderMenu,
-            user: null
+            user: {
+                name: "UIT",
+                photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                email: "tahitu@gmail.com",
+            }
         }
 
         GoogleSignin.hasPlayServices({autoResolve: true}).then(() => {
@@ -79,7 +83,14 @@ class SideMenu extends Component {
             .then(() => {
                 GoogleSignin.currentUserAsync().then((user) => {
                     console.log('USER', user);
-                    this.setState({user: user});
+                    if (user != null)
+                        this.setState({user: user});
+                    else
+                        this.setState({user: {
+                            name: "UIT",
+                            photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                            email: "tahitu@gmail.com",
+                        }})
                 }).done();
             });
     }
@@ -139,7 +150,7 @@ class SideMenu extends Component {
                             />
                             <Text style={styles.menuText}>About Me</Text>
                         </TouchableOpacity>
-                        {renderIf(this.state.user == null)(
+                        {renderIf(this.state.user.email == "tahitu@gmail.com")(
                             <TouchableOpacity onPress={this._signIn.bind(this)}
                                             style={[styles.menu, {
                                                 backgroundColor: this.state.colorLogin,
@@ -153,7 +164,7 @@ class SideMenu extends Component {
                         </TouchableOpacity>
                         )}
 
-                            {renderIf(this.state.user != null)(
+                            {renderIf(this.state.user.email != "tahitu@gmail.com")(
                                 <TouchableOpacity onPress={this._signOut.bind(this)}
                                 style={[styles.menu, {
                                     backgroundColor: this.state.colorLogin,
@@ -190,7 +201,11 @@ class SideMenu extends Component {
         GoogleSignin.signOut()
             .then(() => {
                 console.log('out');
-                this.setState({user: null});
+                this.setState({user: {
+                    name: "UIT",
+                    photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                    email: "tahitu@gmail.com",
+                }});
                 alert("Đăng xuất thành công!");
             })
             .catch((err) => {
@@ -203,12 +218,11 @@ class SideMenu extends Component {
             <View style={styles.header}>
                 <View style={styles.userInfosHolder}>
                     <Image style={styles.avatar}
-                           source={{uri: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg'}}/>
+                           source={{uri: this.state.user.photo}}/>
                     <View style={styles.userInfos}>
                         <Text onPress={this.navigateToScreen('EditProfile')}
-                              style={styles.username}>UIT</Text>
-                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>View and
-                            edit profile</Text>
+                              style={styles.username}>{this.state.user.name}</Text>
+                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>{this.state.user.email}</Text>
                     </View>
 
                 </View>
