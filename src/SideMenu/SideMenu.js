@@ -93,17 +93,14 @@ class SideMenu extends Component {
             .then(() => {
                 GoogleSignin.currentUserAsync().then((user) => {
                     console.log('USER', user);
-                    if (user != null) {
+                    if (user != null)
                         this.setState({user: user});
-                    }
                     else
-                        this.setState({
-                            user: {
-                                name: "UIT",
-                                photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
-                                email: "tahitu@gmail.com",
-                            }
-                        })
+                        this.setState({user: {
+                            name: "UIT",
+                            photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                            email: "tahitu@gmail.com",
+                        }})
                 }).done();
             });
     }
@@ -181,18 +178,18 @@ class SideMenu extends Component {
                             </TouchableOpacity>
                         )}
 
-                        {renderIf(this.state.user.email != "tahitu@gmail.com")(
-                            <TouchableOpacity onPress={this._signOut.bind(this)}
-                                              style={[styles.menu, {
-                                                  backgroundColor: this.state.colorLogin,
-                                                  borderRadius: 5
-                                              }]}>
-                                <Image
-                                    source={require('../screens/images/menu_login.png')}
-                                    style={[{width: 27, height: 27}]}
-                                />
-                                <Text style={styles.menuText}>Đăng Xuất</Text>
-                            </TouchableOpacity>
+                            {renderIf(this.state.user.email != "tahitu@gmail.com")(
+                                <TouchableOpacity onPress={this._signOut.bind(this)}
+                                style={[styles.menu, {
+                                    backgroundColor: this.state.colorLogin,
+                                    borderRadius: 5
+                                }]}>
+                            <Image
+                                source={require('../screens/images/menu_login.png')}
+                                style={[{width: 27, height: 27}]}
+                            />
+                            <Text style={styles.menuText}>Đăng Xuất</Text>
+                                    </TouchableOpacity>
                         )}
                     </View>
                 </View>
@@ -216,13 +213,12 @@ class SideMenu extends Component {
         GoogleSignin.signOut()
             .then(() => {
                 console.log('out');
-                this.setState({
-                    user: {
-                        name: "UIT",
-                        photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
-                        email: "tahitu@gmail.com",
-                    }
-                });
+
+                this.setState({user: {
+                    name: "UIT",
+                    photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                    email: "tahitu@gmail.com",
+                }});
                 alert("Đăng xuất thành công!");
             })
             .catch((err) => {
@@ -239,10 +235,8 @@ class SideMenu extends Component {
                     <View style={styles.userInfos}>
                         <Text onPress={this.navigateToScreen('EditProfile')}
                               style={styles.username}>{this.state.user.name}</Text>
-                        <Text onPress={this.navigateToScreen('EditProfile')}
-                              style={{color: colors.txtWhite}}>{this.state.user.email}</Text>
+                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>{this.state.user.email}</Text>
                     </View>
-
                 </View>
             </View>
         )
