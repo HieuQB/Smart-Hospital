@@ -18,9 +18,18 @@ const noneBorderMenu = 'rgba(255,255,255,0)';
 class SideMenu extends Component {
     navigateToScreen = (route) => () => {
         const navigateAction = NavigationActions.navigate({
-            routeName: route
+            routeName: route,
+            params: {user: this.state.user},
         });
         this.props.navigation.dispatch(navigateAction);
+
+        const reset = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({routeName: route})]
+        })
+
+        this.props.navigation.dispatch(reset);
+
         this.setState({
             colorHome: noneBorderMenu,
             colorChat: noneBorderMenu,
@@ -45,6 +54,7 @@ class SideMenu extends Component {
                 colorAuthor: colorBorderMenu,
             });
         } else if (route === 'Login') {
+
             this.setState({
                 colorLogin: colorBorderMenu,
             });
@@ -83,20 +93,24 @@ class SideMenu extends Component {
             .then(() => {
                 GoogleSignin.currentUserAsync().then((user) => {
                     console.log('USER', user);
-                    if (user != null)
+                    if (user != null) {
                         this.setState({user: user});
+                    }
                     else
-                        this.setState({user: {
-                            name: "UIT",
-                            photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
-                            email: "tahitu@gmail.com",
-                        }})
+                        this.setState({
+                            user: {
+                                name: "UIT",
+                                photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                                email: "tahitu@gmail.com",
+                            }
+                        })
                 }).done();
             });
     }
 
 
     render() {
+        const {setParams} = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={[styles.sideMenu, this.props.style || {}]}>
@@ -117,28 +131,31 @@ class SideMenu extends Component {
                             <Text style={styles.menuText}>Trang Chủ</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={[styles.menu, {backgroundColor: this.state.colorChat, borderRadius: 5}]}
-                            onPress={this.navigateToScreen('Chat')}>
-                            <Image
-                                source={require('../screens/images/menu_chat.png')}
-                                style={[{width: 27, height: 27}]}
-                            />
-                            <Text style={styles.menuText}>Chat</Text>
-                        </TouchableOpacity>
+                        {renderIf(this.state.user.email != "tahitu@gmail.com")(
+                            <TouchableOpacity
+                                style={[styles.menu, {backgroundColor: this.state.colorChat, borderRadius: 5}]}
+                                onPress={this.navigateToScreen('Chat')}>
+                                <Image
+                                    source={require('../screens/images/menu_chat.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Chat</Text>
+                            </TouchableOpacity>
+                        )}
 
-                        <TouchableOpacity onPress={this.navigateToScreen('Booking')}
-                                          style={[styles.menu, {
-                                              backgroundColor: this.state.colorBooking,
-                                              borderRadius: 5
-                                          }]}>
-                            <Image
-                                source={require('../screens/images/menu_booking.png')}
-                                style={[{width: 27, height: 27}]}
-                            />
-                            <Text style={styles.menuText}>Đặt lịch khám</Text>
-                        </TouchableOpacity>
-
+                        {renderIf(this.state.user.email != "tahitu@gmail.com")(
+                            <TouchableOpacity onPress={this.navigateToScreen('Booking')}
+                                              style={[styles.menu, {
+                                                  backgroundColor: this.state.colorBooking,
+                                                  borderRadius: 5
+                                              }]}>
+                                <Image
+                                    source={require('../screens/images/menu_booking.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Đặt lịch khám</Text>
+                            </TouchableOpacity>
+                        )}
                         <TouchableOpacity onPress={this.navigateToScreen('Author')}
                                           style={[styles.menu, {
                                               backgroundColor: this.state.colorAuthor,
@@ -152,33 +169,31 @@ class SideMenu extends Component {
                         </TouchableOpacity>
                         {renderIf(this.state.user.email == "tahitu@gmail.com")(
                             <TouchableOpacity onPress={this._signIn.bind(this)}
-                                            style={[styles.menu, {
-                                                backgroundColor: this.state.colorLogin,
-                                                borderRadius: 5
-                                            }]}>
-                            <Image
-                                source={require('../screens/images/menu_login.png')}
-                                style={[{width: 27, height: 27}]}
-                            />
-                            <Text style={styles.menuText}>Đăng Nhập</Text>
-                        </TouchableOpacity>
+                                              style={[styles.menu, {
+                                                  backgroundColor: this.state.colorLogin,
+                                                  borderRadius: 5
+                                              }]}>
+                                <Image
+                                    source={require('../screens/images/menu_login.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Đăng Nhập</Text>
+                            </TouchableOpacity>
                         )}
 
-                            {renderIf(this.state.user.email != "tahitu@gmail.com")(
-                                <TouchableOpacity onPress={this._signOut.bind(this)}
-                                style={[styles.menu, {
-                                    backgroundColor: this.state.colorLogin,
-                                    borderRadius: 5
-                                }]}>
-                            <Image
-                                source={require('../screens/images/menu_login.png')}
-                                style={[{width: 27, height: 27}]}
-                            />
-                            <Text style={styles.menuText}>Đăng Xuất</Text>
-                                    </TouchableOpacity>
+                        {renderIf(this.state.user.email != "tahitu@gmail.com")(
+                            <TouchableOpacity onPress={this._signOut.bind(this)}
+                                              style={[styles.menu, {
+                                                  backgroundColor: this.state.colorLogin,
+                                                  borderRadius: 5
+                                              }]}>
+                                <Image
+                                    source={require('../screens/images/menu_login.png')}
+                                    style={[{width: 27, height: 27}]}
+                                />
+                                <Text style={styles.menuText}>Đăng Xuất</Text>
+                            </TouchableOpacity>
                         )}
-                     
-
                     </View>
                 </View>
             </View>
@@ -201,11 +216,13 @@ class SideMenu extends Component {
         GoogleSignin.signOut()
             .then(() => {
                 console.log('out');
-                this.setState({user: {
-                    name: "UIT",
-                    photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
-                    email: "tahitu@gmail.com",
-                }});
+                this.setState({
+                    user: {
+                        name: "UIT",
+                        photo: "https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg",
+                        email: "tahitu@gmail.com",
+                    }
+                });
                 alert("Đăng xuất thành công!");
             })
             .catch((err) => {
@@ -222,7 +239,8 @@ class SideMenu extends Component {
                     <View style={styles.userInfos}>
                         <Text onPress={this.navigateToScreen('EditProfile')}
                               style={styles.username}>{this.state.user.name}</Text>
-                        <Text onPress={this.navigateToScreen('EditProfile')} style={{color: colors.txtWhite}}>{this.state.user.email}</Text>
+                        <Text onPress={this.navigateToScreen('EditProfile')}
+                              style={{color: colors.txtWhite}}>{this.state.user.email}</Text>
                     </View>
 
                 </View>

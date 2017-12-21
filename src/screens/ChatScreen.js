@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
@@ -9,19 +9,32 @@ import {
     TouchableOpacity,
     TextInput,
     StatusBar,
+    FlatList
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import FireBase from '../FireBase';
 import {
     GiftedChat
 } from 'react-native-gifted-chat';
 
 export default class ChatScreen extends Component {
-    state = {
-        messages: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            messages: [],
+            data: []
+        }
+    }
+
     componentWillMount() {
+        var flatListData = [];
+        FireBase.loadDoctors((doctor) => {
+            flatListData.push(doctor);
+            this.setState({
+                data: flatListData
+            })
+        });
         this.setState({
             messages: [
                 {
@@ -37,14 +50,15 @@ export default class ChatScreen extends Component {
             ],
         });
     }
+
     static navigationOptions = {
         tabBarLabel: 'Chat',
-        drawerIcon: ({ tintColor }) => {
+        drawerIcon: ({tintColor}) => {
             return (
                 <MaterialIcons
                     name="pets"
                     size={24}
-                    style={{ color: tintColor }}>
+                    style={{color: tintColor}}>
 
                 </MaterialIcons>
             );
@@ -53,7 +67,7 @@ export default class ChatScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, }}>
+            <View style={{flex: 1,}}>
                 <StatusBar
                     backgroundColor="#337f9d"
                     barStyle="light-content"
@@ -63,10 +77,10 @@ export default class ChatScreen extends Component {
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('DrawerOpen')}
                         >
-                            <Image source={require('./images/menu.png')} style={styles.iconStyle} />
+                            <Image source={require('./images/menu.png')} style={styles.iconStyle}/>
                         </TouchableOpacity>
                         <Text style={styles.textStyle}>Chat với bác sĩ</Text>
-                        <Image source={require('./images/search.png')} style={styles.iconStyle} />
+                        <Image source={require('./images/search.png')} style={styles.iconStyle}/>
                     </View>
                 </View>
 
@@ -77,20 +91,33 @@ export default class ChatScreen extends Component {
                     }}
                     user={{
                         _id: FireBase.getUid(),
-                        name: this.props.name,
-                        avatar: this.props.avatar,
-                    }} />
+                        name: this.props.navigation.state.params.user.email,
+                        avatar: this.props.navigation.state.params.user.photo
+                    }}/>
+
+                {/*<FlatList*/}
+                {/*data={this.state.data}*/}
+                {/*renderItem={({item, index}) => {*/}
+                {/*return (*/}
+                {/*<FlatListItem item={item} index={index}>*/}
+
+                {/*</FlatListItem>);*/}
+                {/*}}*/}
+                {/*>*/}
+                {/*</FlatList>*/}
 
             </View>
         );
     }
+
     componentDidMount() {
         FireBase.loadMessages((message) => {
-            this.setState((previousState) => {
-                return {
-                    messages: GiftedChat.append(previousState.messages, message),
-                };
-            });
+            if (message.user.name == 'PGS TS Nguyễn Minh Hiếu' || message.user.name == this.props.navigation.state.params.user.email)
+                this.setState((previousState) => {
+                    return {
+                        messages: GiftedChat.append(previousState.messages, message),
+                    };
+                });
         });
     }
 
@@ -103,6 +130,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'stretch',
+    },
+    containerItem: {
+        marginBottom: 3,
+        backgroundColor: '#f5f5f0',
+        borderWidth: 2,
+        borderColor: '#e0e0d1',
+        borderRadius: 10,
+        padding: 5,
+        flexDirection: 'row'
+    },
+    textItem: {
+        fontSize: 20
+    },
+    imageItem: {
+        width: 25,
+        height: 25,
+        marginRight: 10
     },
     navBar: {
         height: 50,
@@ -131,3 +175,17 @@ const styles = StyleSheet.create({
         height: 25,
     },
 })
+
+class FlatListItem extends Component {
+    render() {
+        return (
+            <View style={styles.containerItem}>
+                <Image
+                    source={{uri: this.props.item.imageUrl}}
+                    style={styles.imageItem}
+                />
+                <Text style={styles.textItem}>{this.props.item.name}</Text>
+            </View>
+        );
+    }
+}

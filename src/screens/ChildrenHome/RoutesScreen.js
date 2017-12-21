@@ -35,7 +35,7 @@ const HomeTabs = TabNavigator(
 
         Question: {
             screen: QuestionsScreen,
-            path: 'pic',
+            path: 'question',
             navigationOptions: {
                 tabBarLabel: 'Hỏi-Đáp',
                 tabBarIcon: ({ tintColor }) => (

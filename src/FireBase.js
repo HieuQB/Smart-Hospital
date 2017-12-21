@@ -3,6 +3,7 @@ import firebase from 'firebase';
 class FireBase {
     uid = '';
     messageRef = null;
+    doctorRef = null;
 
     constructor() {
         const config = {
@@ -24,6 +25,8 @@ class FireBase {
                 });
             }
         });
+        this.messageRef = firebase.database().ref('messages');
+        this.doctorRef = firebase.database().ref('doctor');
     }
 
     setUid(value) {
@@ -34,8 +37,6 @@ class FireBase {
     }
 
     loadMessages(callback) {
-        this.messageRef = firebase.database().ref('messages');
-        this.messageRef.off();
         const onReceive = (data) => {
             const message = data.val();
             callback({
@@ -66,6 +67,28 @@ class FireBase {
         if (this.messageRef) {
             this.messageRef.off();
         }
+    }
+
+    addDoctor(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.doctorRef.push({
+                name: data[i].name,
+                imageUrl: data[i].imageUrl,
+                khoa: data[i].khoa
+            });
+        }
+    }
+
+    loadDoctors(callback) {
+        const onReceive = (data) => {
+            const doctor = data.val();
+            callback({
+                name: doctor.name,
+                imageUrl: doctor.imageUrl,
+                khoa: doctor.khoa
+            });
+        };
+        this.doctorRef.on('child_added', onReceive);
     }
 }
 
