@@ -164,6 +164,7 @@ class SideMenu extends Component {
                             />
                             <Text style={styles.menuText}>About Me</Text>
                         </TouchableOpacity>
+
                         {renderIf(this.state.user.email == "tahitu@gmail.com")(
                             <TouchableOpacity onPress={this._signIn.bind(this)}
                                               style={[styles.menu, {
@@ -255,15 +256,15 @@ const colors = {
     txtDark: '#214559',
     txtWhite: '#ffffff',
 
-    bgMain: '#214559',
-    bgMainDark: '#214559', // For screens > auth
+    bgMain: '#2c5c79',
+    bgMainDark: '#4185f2', // For screens > auth
     bgMainRed: '#FE6165',
     bgWhite: '#ffffff',
     bgError: '#fb642d',
     bgChat: '#f1f1f1',
     bgSuccess: '#25ce66',
 
-    bdMain: '#214559',
+    bdMain: '#4185f2',
     bdMainRed: '#FE6165',
     bdWhite: '#ffffff',
     bdLine: '#dddddd',

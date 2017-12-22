@@ -50,7 +50,7 @@ class SectionHeader extends Component {
         return (
             <View style={{
                 flex: 1,
-                backgroundColor: 'rgb(77,120, 140)',
+                backgroundColor: '#2eb52f',
                 flexDirection:'row',
             }}>
                 <Image

@@ -33,7 +33,7 @@ export default class HomeScreen extends Component {
         return(
             <View style={styles.container}>
                 <StatusBar
-                    backgroundColor="#337f9d"
+                    backgroundColor="#3369c3"
                     barStyle="light-content"
                 />
                 <View style={styles.wrapper}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 50,
-        backgroundColor: '#337f9d',
+        backgroundColor: '#4185f2',
         padding: 10,
         justifyContent: 'space-around'
     },

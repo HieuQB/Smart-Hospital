@@ -63,7 +63,7 @@ export default class AuthorScreen extends Component {
         return (
             <View style={{flex :1}}>
                 <StatusBar
-                    backgroundColor="#337f9d"
+                    backgroundColor="#3369c3"
                     barStyle="light-content"
                 />
                 <View style={styles.wrapper}>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 50,
-        backgroundColor: '#337f9d',
+        backgroundColor: '#4185f2',
         padding: 10,
         justifyContent: 'space-around',
         marginBottom:40,

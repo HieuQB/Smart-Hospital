@@ -8,14 +8,29 @@ import {
     Button,
     Image,
 } from 'react-native';
-import { TabNavigator } from "react-navigation";
+import { TabNavigator,StackNavigator } from "react-navigation";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CostScreen from './CostScreen';
 import InforScreen from './InforScreen';
 import QuestionsScreen from './QuestionsScreen';
 import TimeLineScreen from './TimeLineScreen';
+import DetailQuestionScreen from './DetailQuestionScreen';
 
-
+const Question = StackNavigator({
+    ListQuestion: {
+        screen: QuestionsScreen,
+        path: '/',
+        navigationOptions: () => ({
+            header:null,
+        }),
+    },
+    DetailQuestion: {
+        screen: DetailQuestionScreen,
+        navigationOptions: ({ navigation }) => ({
+            title: `${navigation.state.params.user.title}`,
+        }),
+    },
+});
 
 const HomeTabs = TabNavigator(
     {
@@ -34,7 +49,7 @@ const HomeTabs = TabNavigator(
         },
 
         Question: {
-            screen: QuestionsScreen,
+            screen: Question,
             path: 'question',
             navigationOptions: {
                 tabBarLabel: 'Hỏi-Đáp',
