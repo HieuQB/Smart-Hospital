@@ -19,8 +19,8 @@ import DetailQuestionScreen from './DetailQuestionScreen';
 const Question = StackNavigator({
     ListQuestion: {
         screen: QuestionsScreen,
-        path: '/',
         navigationOptions: () => ({
+        path: '/',
             header:null,
         }),
     },

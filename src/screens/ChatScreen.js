@@ -14,9 +14,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import FireBase from '../FireBase';
-import {
-    GiftedChat
-} from 'react-native-gifted-chat';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 export default class ChatScreen extends Component {
     constructor(props) {
@@ -84,31 +82,36 @@ export default class ChatScreen extends Component {
                     </View>
                 </View>
 
-                <GiftedChat
-                    messages={this.state.messages}
-                    onSend={(messages) => {
-                        FireBase.sendMessage(messages);
-                    }}
-                    user={{
-                        _id: FireBase.getUid(),
-                        name: this.props.navigation.state.params.user.email,
-                        avatar: this.props.navigation.state.params.user.photo
-                    }}/>
-
-                {/*<FlatList*/}
-                {/*data={this.state.data}*/}
-                {/*renderItem={({item, index}) => {*/}
-                {/*return (*/}
-                {/*<FlatListItem item={item} index={index}>*/}
-
-                {/*</FlatListItem>);*/}
+                {/*<GiftedChat*/}
+                {/*messages={this.state.messages}*/}
+                {/*onSend={(messages) => {*/}
+                {/*FireBase.sendMessage(messages);*/}
                 {/*}}*/}
-                {/*>*/}
-                {/*</FlatList>*/}
+                {/*user={{*/}
+                {/*_id: this.props.navigation.state.params.user.id,*/}
+                {/*name: this.props.navigation.state.params.user.email,*/}
+                {/*avatar: this.props.navigation.state.params.user.photo*/}
+                {/*}}/>*/}
+
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({item, index}) => {
+                        return (
+                            <FlatListItem onPressItem={this._onPressItem} item={item} index={index}>
+
+                            </FlatListItem>);
+                    }}
+                >
+                </FlatList>
 
             </View>
         );
     }
+
+    _onPressItem = (item) => {
+        alert("sdfdsf");
+        this.props.navigation.navigate('DetailChat');
+    };
 
     componentDidMount() {
         FireBase.loadMessages((message) => {
@@ -177,15 +180,21 @@ const styles = StyleSheet.create({
 })
 
 class FlatListItem extends Component {
+    _onPress = () => {
+        this.props.onPressItem(this.props.item);
+    };
+
     render() {
         return (
-            <View style={styles.containerItem}>
-                <Image
-                    source={{uri: this.props.item.imageUrl}}
-                    style={styles.imageItem}
-                />
-                <Text style={styles.textItem}>{this.props.item.name}</Text>
-            </View>
+            <TouchableOpacity onPress={this._onPress}>
+                <View style={styles.containerItem}>
+                    <Image
+                        source={{uri: this.props.item.imageUrl}}
+                        style={styles.imageItem}
+                    />
+                    <Text style={styles.textItem}>{this.props.item.name}</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 }

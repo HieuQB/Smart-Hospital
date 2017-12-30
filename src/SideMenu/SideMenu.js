@@ -26,8 +26,7 @@ class SideMenu extends Component {
         const reset = NavigationActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({routeName: route})]
-        })
-
+        });
         this.props.navigation.dispatch(reset);
 
         this.setState({
@@ -107,7 +106,6 @@ class SideMenu extends Component {
 
 
     render() {
-        const {setParams} = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={[styles.sideMenu, this.props.style || {}]}>

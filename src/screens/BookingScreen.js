@@ -9,10 +9,43 @@ import {
     TouchableOpacity,
     TextInput,
     StatusBar,
+    FlatList,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Calendar } from 'react-native-calendars';
+import FireBase from '../FireBase';
 
 export default class BookingScreen extends Component {
+    constructor(){
+        super()
+        this.state = {
+            data: [],
+            date: ''
+        }
+
+        const data = [{
+            name: 'PGS TS Nguyễn Minh Hiếu',
+            date: '2017-12-30',
+            data:[
+                {key: 'a', time: '08:00', name: 'Hoàng Kim Tuấn'},
+                {key: 'b', time: '08:30', name: ''},
+                {key: 'c', time: '09:00', name: 'Nguyễn Minh Hiếu'},
+                {key: 'd', time: '09:30', name: ''},
+                {key: 'e', time: '10:00', name: 'Nguyễn Minh Hiếu'},
+                {key: 'f', time: '10:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'g', time: '11:00', name: 'Nguyễn Minh Hiếu'},
+                {key: 'h', time: '11:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'i', time: '13:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'j', time: '14:00', name: ''},
+                {key: 'k', time: '14:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'l', time: '15:00', name: 'Nguyễn Minh Hiếu'},
+                {key: 'm', time: '15:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'n', time: '16:00', name: 'Nguyễn Minh Hiếu'},
+                {key: 'o', time: '16:30', name: 'Nguyễn Minh Hiếu'},
+                {key: 'p', time: '17:00', name: 'Nguyễn Minh Hiếu'},]
+        }];
+    }
+
     static navigationOptions = {
         tabBarLabel: 'Booking',
         drawerIcon: ({tintColor}) => {
@@ -27,9 +60,18 @@ export default class BookingScreen extends Component {
         }
     }
 
+    _onPressItem = (item) => {
+        if (item.name != '') {
+            alert("Đã có người đặt lịch trong thời gian này. \nVui lòng chọn thời gian khác");
+        }
+        else {
+
+        }
+    };
+
     render() {
         return (
-            <View style={{flex: 1,}}>
+            <View style={{flex: 1}}>
                 <StatusBar
                     backgroundColor="#3369c3"
                     barStyle="light-content"
@@ -46,9 +88,30 @@ export default class BookingScreen extends Component {
                     </View>
                 </View>
 
-                <Text style={{fontSize:30, color:'green'}}>
-                    Màn hình Đặt lịch khám
-                </Text>
+                <Calendar style={{flex: 0.65}}
+                    minDate={new Date()}
+                    onDayPress={(day) => {
+                        console.log('selected day', day.dateString);
+                        FireBase.loadCalendar((calendar) => {
+                            this.setState({
+                                data: calendar.data
+                            })
+                        }, 'PGS TS Nguyễn Minh Hiếu', day.dateString);
+                    }}
+                />
+
+                <View style={{flex: 0.35, backgroundColor: '#fff', marginTop: 10}}>
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({item, index}) => {
+                            return (
+                                <FlatListItem onPressItem={this._onPressItem} item={item} index={index}>
+
+                                </FlatListItem>);
+                        }}
+                    >
+                    </FlatList>
+                </View>
 
             </View>
         );
@@ -85,5 +148,26 @@ const styles = StyleSheet.create({
     iconStyle: {
         width: 25,
         height: 25,
-    },
+    }
 })
+
+class FlatListItem extends Component {
+    _onPress = () => {
+        this.props.onPressItem(this.props.item);
+    };
+
+    render() {
+        return (
+            <TouchableOpacity onPress={this._onPress}>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={{color: '#f00'}}>
+                        {this.props.item.time}-
+                    </Text>
+                    <Text>
+                        {this.props.item.name}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+}

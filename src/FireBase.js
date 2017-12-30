@@ -4,6 +4,7 @@ class FireBase {
     uid = '';
     messageRef = null;
     doctorRef = null;
+    calendarRef = null;
 
     constructor() {
         const config = {
@@ -27,6 +28,7 @@ class FireBase {
         });
         this.messageRef = firebase.database().ref('messages');
         this.doctorRef = firebase.database().ref('doctor');
+        this.calendarRef = firebase.database().ref('calendar');
     }
 
     setUid(value) {
@@ -83,6 +85,7 @@ class FireBase {
         const onReceive = (data) => {
             const doctor = data.val();
             callback({
+                key: doctor.key,
                 name: doctor.name,
                 imageUrl: doctor.imageUrl,
                 khoa: doctor.khoa
@@ -90,6 +93,46 @@ class FireBase {
         };
         this.doctorRef.on('child_added', onReceive);
     }
+
+    addCalendar(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.calendarRef.push({
+                name: data[i].name,
+                date: data[i].date,
+                data: data[i].data
+            });
+        }
+    }
+
+    loadCalendar(callback, name, date) {
+        var ob = {data: []};
+        const onReceive = (data) => {
+            const calendar = data.val();
+            if (calendar.name == name && calendar.date == date) {
+                ob = {
+                    _id: data.key,
+                    name: calendar.name,
+                    date: calendar.date,
+                    data: calendar.data
+                };
+                callback(ob);
+            }
+            else {
+                callback(ob);
+            }
+        };
+        this.calendarRef.on('child_added', onReceive);
+    }
+
+    // updateCalendar(data, key) {
+    //     for (let i = 0; i < data.length; i++) {
+    //         firebase.database().ref('calendar/' + key).set({
+    //             name: data[i].name,
+    //             date: data[i].date,
+    //             data: data[i].data
+    //         });
+    //     }
+    // }
 }
 
 export default new FireBase();
