@@ -165,10 +165,11 @@ export default class DetailBookingScreen extends Component {
                 <Calendar style={{flex: 0.65}}
                           minDate={new Date()}
                           maxDate={this.state.maxDate}
-                          // markedDates={{
-                          //     '2012-05-16': {selected: true},
-                          // }}
+                          markedDates={{[this.state.date]: {selected: true}}}
                           onDayPress={(day) => {
+                              this.setState({
+                                  date: day.dateString
+                              });
                               var a = true;
                               for (var i = 0; i < this.state.list.length; i++) {
                                   if (day.dateString == this.state.list[i].date) {
@@ -239,6 +240,31 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
     },
+    containerItem: {
+        marginBottom: 6,
+        backgroundColor: '#f5f5f0',
+        borderWidth: 1,
+        borderColor: '#1db5e2',
+        borderRadius: 10,
+        padding: 5,
+        flexDirection: 'row',
+        elevation: 5
+    },
+    textItem: {
+        fontSize: 16,
+        color: '#000',
+        marginLeft: 15,
+        marginTop: 2
+    },
+    timeItem: {
+        fontSize: 20,
+        color: '#337f9d'
+    },
+    imageItem: {
+        width: 25,
+        height: 25,
+        marginRight: 10
+    },
     navBar: {
         height: 50,
         justifyContent: 'center',
@@ -275,12 +301,16 @@ class FlatListItem extends Component {
     render() {
         return (
             <TouchableOpacity onPress={this._onPress}>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={{color: '#f00'}}>
-                        {this.props.item.time}-
+                <View style={styles.containerItem}>
+                    <Image
+                        source={require('./images/if_Time_Machine-01_72122.png')}
+                        style={styles.imageItem}
+                    />
+                    <Text style={styles.timeItem}>
+                        {this.props.item.time}
                     </Text>
-                    <Text>
-                        {this.props.item.name}
+                    <Text style={styles.textItem}>
+                        Bệnh nhân {this.props.item.name}
                     </Text>
                 </View>
             </TouchableOpacity>
