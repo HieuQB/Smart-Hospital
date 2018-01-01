@@ -45,6 +45,7 @@ class FireBase {
                 _id: data.key,
                 text: message.text,
                 createdAt: new Date(message.createdAt),
+                key: message.key,
                 user: {
                     _id: message.user._id,
                     name: message.user.name,
@@ -55,12 +56,13 @@ class FireBase {
         this.messageRef.limitToLast(20).on('child_added', onReceive);
     }
 
-    sendMessage(message) {
+    sendMessage(message, name) {
         for (let i = 0; i < message.length; i++) {
             this.messageRef.push({
                 text: message[i].text,
                 user: message[i].user,
                 createdAt: firebase.database.ServerValue.TIMESTAMP,
+                key: message[i].user.name + '-' + name
             });
         }
     }
@@ -124,15 +126,28 @@ class FireBase {
         this.calendarRef.on('child_added', onReceive);
     }
 
-    // updateCalendar(data, key) {
-    //     for (let i = 0; i < data.length; i++) {
-    //         firebase.database().ref('calendar/' + key).set({
-    //             name: data[i].name,
-    //             date: data[i].date,
-    //             data: data[i].data
-    //         });
-    //     }
-    // }
+    updateCalendar(callback, name, date, update) {
+        const onReceive = (data) => {
+            const calendar = data.val();
+            if (calendar.name == name && calendar.date == date) {
+                update.check = true;
+                callback(update);
+            }
+            else {
+                update.check = false;
+                callback(update);
+            }
+        };
+        this.calendarRef.on('child_added', onReceive);
+    }
+
+    updateItemCalendar(data, key) {
+        firebase.database().ref('calendar/' + key._id).set({
+            name: key.name,
+            date: key.date,
+            data: data
+        });
+    }
 }
 
 export default new FireBase();

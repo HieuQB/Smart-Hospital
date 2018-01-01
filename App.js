@@ -20,57 +20,82 @@ import BookingScreen from './src/screens/BookingScreen';
 import EditProfileScreen from './src/screens/EditProfileScreen';
 import AuthorScreen from './src/screens/AuthorScreen';
 import LoginScreen from './src/screens/LoginScreen';
-import DetailQuestionScreen from "./src/screens/ChildrenHome/DetailQuestionScreen";
-import QuestionsScreen from "./src/screens/ChildrenHome/QuestionsScreen";
+import DetailChatScreen from './src/screens/DetailChatScreen';
+import DetailBookingScreen from './src/screens/DetailBookingScreen';
 
-// export const ChatStack = StackNavigator({
-//     ListChat: {
-//         screen: ChatScreen,
-//         navigationOptions: () => ({
-//             path: '/',
-//             header:null,
-//         }),
-//     },
-//     DetailChat: {
-//         screen: AuthorScreen,
-//         navigationOptions: ({ navigation }) => ({
-//             title: "dsdf",
-//         }),
-//     },
-// });
+const ChatStack = StackNavigator({
+        ListChat: {
+            screen: ChatScreen,
+            navigationOptions: () => ({
+                path: '/',
+                header: null,
+            }),
+        },
+        DetailChat: {
+            screen: DetailChatScreen,
+            navigationOptions: () => ({
+                header: null,
+            }),
+        },
+    }
+    , {
+        stateName: 'ListChat', // If you don't give it a name it will just use the value of initialRouteName
+        initialRouteName: 'ListChat',
+    }
+);
 
+const BookingStack = StackNavigator({
+        ListBooking: {
+            screen: BookingScreen,
+            navigationOptions: () => ({
+                path: '/',
+                header: null,
+            }),
+        },
+        DetailBooking: {
+            screen: DetailBookingScreen,
+            navigationOptions: () => ({
+                header: null,
+            }),
+        },
+    }
+    , {
+        stateName: 'ListBooking', // If you don't give it a name it will just use the value of initialRouteName
+        initialRouteName: 'ListBooking',
+    }
+);
 
 const DrawerMenu = DrawerNavigator(
     {
-        Home : {
+        Home: {
             path: '/',
             screen: HomeScreen,
         },
-        Chat :{
-          path: '/',
-            screen: ChatScreen,
-        },
-        Booking : {
+        Chat: {
             path: '/',
-            screen: BookingScreen,
+            screen: ChatStack,
         },
-        EditProfile :{
+        Booking: {
+            path: '/',
+            screen: BookingStack,
+        },
+        EditProfile: {
             path: '/sent',
             screen: EditProfileScreen,
         },
-        Author :{
+        Author: {
             path: '/sent',
             screen: AuthorScreen,
         },
-        Login :{
+        Login: {
             path: '/sent',
             screen: LoginScreen,
         },
     },
     {
         contentComponent: SideMenu,
-        drawerPosition : 'left',
-        contentOptions:{
+        drawerPosition: 'left',
+        contentOptions: {
             activeTintColor: 'red',
         }
     }

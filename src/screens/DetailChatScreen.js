@@ -12,28 +12,31 @@ import {
     FlatList
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import FireBase from '../FireBase';
-import { GiftedChat } from 'react-native-gifted-chat';
+import {GiftedChat} from 'react-native-gifted-chat';
 
-export default class ChatScreen extends Component {
+export default class DetailChatScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            messages: []
         }
-        GoogleSignin.currentUserAsync().then((user) => {
-            this.setState({user: user});
-        }).done();
     }
 
     componentWillMount() {
-        var flatListData = [];
-        FireBase.loadDoctors((doctor) => {
-            flatListData.push(doctor);
-            this.setState({
-                data: flatListData
-            })
+        this.setState({
+            messages: [
+                {
+                    _id: 1,
+                    text: 'Hello developer',
+                    createdAt: new Date(),
+                    user: {
+                        _id: 2,
+                        name: 'React Native',
+                        avatar: 'https://lh5.googleusercontent.com/-moc10QUwUec/AAAAAAAAAAI/AAAAAAAAAN8/At-yv83KVJY/photo.jpg',
+                    },
+                },
+            ],
         });
     }
 
@@ -65,29 +68,40 @@ export default class ChatScreen extends Component {
                         >
                             <Image source={require('./images/menu.png')} style={styles.iconStyle}/>
                         </TouchableOpacity>
-                        <Text style={styles.textStyle}>Danh sách bác sĩ</Text>
+                        <Text style={styles.textStyle}>{this.props.navigation.state.params.name}</Text>
                         <Image source={require('./images/search.png')} style={styles.iconStyle}/>
                     </View>
                 </View>
 
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({item, index}) => {
-                        return (
-                            <FlatListItem onPressItem={this._onPressItem} item={item} index={index}>
-
-                            </FlatListItem>);
+                <GiftedChat
+                    messages={this.state.messages}
+                    onSend={(messages) => {
+                        FireBase.sendMessage(messages, this.props.navigation.state.params.name);
                     }}
-                >
-                </FlatList>
+                    user={{
+                        _id: this.props.navigation.state.params.user.id,
+                        name: this.props.navigation.state.params.user.email,
+                        avatar: this.props.navigation.state.params.user.photo
+                    }}/>
 
             </View>
         );
     }
 
-    _onPressItem = (item) => {
-        this.props.navigation.navigate('DetailChat', {user: this.state.user, name: item.name});
-    };
+    componentDidMount() {
+        FireBase.loadMessages((message) => {
+            if (message.key == this.props.navigation.state.params.user.email + '-' + this.props.navigation.state.params.name)
+                this.setState((previousState) => {
+                    return {
+                        messages: GiftedChat.append(previousState.messages, message),
+                    };
+                });
+        });
+    }
+
+    componentWillUnmount() {
+        FireBase.closeChat();
+    }
 }
 
 const styles = StyleSheet.create({
@@ -96,22 +110,20 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
     },
     containerItem: {
-        marginBottom: 6,
+        marginBottom: 3,
         backgroundColor: '#f5f5f0',
-        borderWidth: 1,
-        borderColor: '#1db5e2',
+        borderWidth: 2,
+        borderColor: '#e0e0d1',
         borderRadius: 10,
         padding: 5,
-        flexDirection: 'row',
-        elevation: 5
+        flexDirection: 'row'
     },
     textItem: {
-        fontSize: 20,
-        color: '#000'
+        fontSize: 20
     },
     imageItem: {
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         marginRight: 10
     },
     navBar: {
@@ -141,26 +153,3 @@ const styles = StyleSheet.create({
         height: 25,
     },
 })
-
-class FlatListItem extends Component {
-    _onPress = () => {
-        this.props.onPressItem(this.props.item);
-    };
-
-    render() {
-        return (
-            <TouchableOpacity onPress={this._onPress}>
-                <View style={styles.containerItem}>
-                    <Image
-                        source={{uri: this.props.item.imageUrl}}
-                        style={styles.imageItem}
-                    />
-                    <View>
-                        <Text style={styles.textItem}>{this.props.item.khoa}</Text>
-                        <Text style={styles.textItem}>{this.props.item.name}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-}

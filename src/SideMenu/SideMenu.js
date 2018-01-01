@@ -23,11 +23,11 @@ class SideMenu extends Component {
         });
         this.props.navigation.dispatch(navigateAction);
 
-        const reset = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({routeName: route})]
-        });
-        this.props.navigation.dispatch(reset);
+        // const reset = NavigationActions.reset({
+        //     index: 0,
+        //     actions: [NavigationActions.navigate({routeName: route})]
+        // });
+        // this.props.navigation.dispatch(reset);
 
         this.setState({
             colorHome: noneBorderMenu,

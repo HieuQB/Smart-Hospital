@@ -12,38 +12,30 @@ import {
     FlatList,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Calendar } from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
 import FireBase from '../FireBase';
+import {GoogleSignin} from "react-native-google-signin";
 
 export default class BookingScreen extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             data: [],
-            date: ''
         }
 
-        const data = [{
-            name: 'PGS TS Nguyễn Minh Hiếu',
-            date: '2017-12-30',
-            data:[
-                {key: 'a', time: '08:00', name: 'Hoàng Kim Tuấn'},
-                {key: 'b', time: '08:30', name: ''},
-                {key: 'c', time: '09:00', name: 'Nguyễn Minh Hiếu'},
-                {key: 'd', time: '09:30', name: ''},
-                {key: 'e', time: '10:00', name: 'Nguyễn Minh Hiếu'},
-                {key: 'f', time: '10:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'g', time: '11:00', name: 'Nguyễn Minh Hiếu'},
-                {key: 'h', time: '11:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'i', time: '13:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'j', time: '14:00', name: ''},
-                {key: 'k', time: '14:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'l', time: '15:00', name: 'Nguyễn Minh Hiếu'},
-                {key: 'm', time: '15:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'n', time: '16:00', name: 'Nguyễn Minh Hiếu'},
-                {key: 'o', time: '16:30', name: 'Nguyễn Minh Hiếu'},
-                {key: 'p', time: '17:00', name: 'Nguyễn Minh Hiếu'},]
-        }];
+        GoogleSignin.currentUserAsync().then((user) => {
+            this.setState({user: user});
+        }).done();
+    }
+
+    componentWillMount() {
+        var flatListData = [];
+        FireBase.loadDoctors((doctor) => {
+            flatListData.push(doctor);
+            this.setState({
+                data: flatListData
+            })
+        });
     }
 
     static navigationOptions = {
@@ -61,12 +53,7 @@ export default class BookingScreen extends Component {
     }
 
     _onPressItem = (item) => {
-        if (item.name != '') {
-            alert("Đã có người đặt lịch trong thời gian này. \nVui lòng chọn thời gian khác");
-        }
-        else {
-
-        }
+        this.props.navigation.navigate('DetailBooking', {user: this.state.user, name: item.name});
     };
 
     render() {
@@ -75,43 +62,29 @@ export default class BookingScreen extends Component {
                 <StatusBar
                     backgroundColor="#3369c3"
                     barStyle="light-content"
-                        />
+                />
                 <View style={styles.wrapper}>
                     <View style={styles.row1}>
                         <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate('DrawerOpen')}
+                            onPress={() => this.props.navigation.navigate('DrawerOpen')}
                         >
-                            <Image source={require('./images/menu.png')} style={styles.iconStyle} />
+                            <Image source={require('./images/menu.png')} style={styles.iconStyle}/>
                         </TouchableOpacity>
-                        <Text style={styles.textStyle}>Đặt lịch khám</Text>
-                        <Image source={require('./images/search.png')} style={styles.iconStyle} />
+                        <Text style={styles.textStyle}>Danh sách bác sĩ khám</Text>
+                        <Image source={require('./images/search.png')} style={styles.iconStyle}/>
                     </View>
                 </View>
 
-                <Calendar style={{flex: 0.65}}
-                    minDate={new Date()}
-                    onDayPress={(day) => {
-                        console.log('selected day', day.dateString);
-                        FireBase.loadCalendar((calendar) => {
-                            this.setState({
-                                data: calendar.data
-                            })
-                        }, 'PGS TS Nguyễn Minh Hiếu', day.dateString);
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({item, index}) => {
+                        return (
+                            <FlatListItem onPressItem={this._onPressItem} item={item} index={index}>
+
+                            </FlatListItem>);
                     }}
-                />
-
-                <View style={{flex: 0.35, backgroundColor: '#fff', marginTop: 10}}>
-                    <FlatList
-                        data={this.state.data}
-                        renderItem={({item, index}) => {
-                            return (
-                                <FlatListItem onPressItem={this._onPressItem} item={item} index={index}>
-
-                                </FlatListItem>);
-                        }}
-                    >
-                    </FlatList>
-                </View>
+                >
+                </FlatList>
 
             </View>
         );
@@ -122,6 +95,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'stretch',
+    },
+    containerItem: {
+        marginBottom: 6,
+        backgroundColor: '#f5f5f0',
+        borderWidth: 1,
+        borderColor: '#1db5e2',
+        borderRadius: 10,
+        padding: 5,
+        flexDirection: 'row',
+        elevation: 5
+    },
+    textItem: {
+        fontSize: 20,
+        color: '#000'
+    },
+    imageItem: {
+        width: 50,
+        height: 50,
+        marginRight: 10
     },
     navBar: {
         height: 50,
@@ -159,13 +151,15 @@ class FlatListItem extends Component {
     render() {
         return (
             <TouchableOpacity onPress={this._onPress}>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={{color: '#f00'}}>
-                        {this.props.item.time}-
-                    </Text>
-                    <Text>
-                        {this.props.item.name}
-                    </Text>
+                <View style={styles.containerItem}>
+                    <Image
+                        source={{uri: this.props.item.imageUrl}}
+                        style={styles.imageItem}
+                    />
+                    <View>
+                        <Text style={styles.textItem}>{this.props.item.khoa}</Text>
+                        <Text style={styles.textItem}>{this.props.item.name}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         );

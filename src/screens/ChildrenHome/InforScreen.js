@@ -90,22 +90,32 @@ export default class InforScreen extends Component{
             interval: null,
             dataSource: [
                 {
-                    title: 'Title 1',
-                    caption: 'Caption 1',
-                    url: require('../images/1.jpg'),
+                    title: 'Love Bus',
+                    caption: 'Đồng hành, chăm sóc sức khỏe bà con Bình Phước',
+                    url: require('../images/intropic1.jpg'),
                 }, {
-                    title: 'Title 2',
-                    caption: 'Caption 2',
-                    url: require('../images/2.jpg'),
+                    title: 'Hội thảo khoa học',
+                    caption: 'Kĩ thuật điều trị sớm ung thư dạ dày',
+                    url: require('../images/intropic2.jpg'),
                 }, {
-                    title: 'Title 3',
-                    caption: 'Caption 3',
-                    url: require('../images/3.jpg'),
+                    title: '10/2017',
+                    caption: 'Lớp tiền sản "Mẹ đã sẵn sàng"',
+                    url: require('../images/intropic3.jpg'),
+                },
+                {
+                    title: 'Khoa cấp cứu',
+                    caption: 'Cứu sống bệnh nhân nhồi máu cơ tim do biến chứng',
+                    url: require('../images/intropic4.jpg'),
+                },
+                {
+                    title: '12/12/2017',
+                    caption: 'Đạt chứng nhận Six Sigma của Westgard VP',
+                    url: require('../images/intropic5.jpg'),
                 },
             ],
             region:{
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: 10.8001459,
+                longitude: 106.6142172,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },
@@ -130,45 +140,45 @@ export default class InforScreen extends Component{
         var flatListData = [
             {
                 "key": "598a678278fee204ee51cd2c",
-                "name": "PGS TS Nguyễn Minh Hiếu",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Cornish_cream_tea_2.jpg",
-                "khoa": "Truyền Nhiễm"
+                "name": "BS Phan Thanh Toàn",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172018_Rloj5f5hRc.jpg",
+                "khoa": "Trưởng khoa Cấp cứu"
             },
             {
                 "key": "598a684f78fee204ee51cd2f",
-                "name": "PGS TS Nguyễn Minh Hiếu",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Lactarius_indigo_48568.jpg",
-                "khoa": "Khoa Sản"
+                "name": "BS Bùi Quang Đi",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511171841_IfMTPlKROp.jpg",
+                "khoa": "Trưởng khoa khám bệnh"
             },
             {
                 "key": "598a687678fee204ee51cd30",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Oysters_served_on_ice%2C_with_lemon_and_parsley.jpg",
-                "khoa": "Di Truyền & Sinh vật học phân tử"
+                "name": "BS Nguyễn Ngọc Huy",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172111_mSCHY3uZ9K.jpg",
+                "khoa": "Trưởng khoa hồi sức"
             },
             {
                 "key": "598a680178fee204ee51cd2e",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Yeolmukimchi_3.jpg",
-                "khoa": "Răng Hàm Mặt"
+                "name": "BS Nguyễn Ngọc Thao",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172336_AI5WNirrsU.jpg",
+                "khoa": "Trưởng khoa Ngoại"
             },
             {
                 "key": "598a688878fee204ee51cd31",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg",
-                "khoa": "Răng Hàm Mặt"
+                "name": "BS Phan Thanh Chương",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-22/thumbnail_1511315079_pDUgWgM0eE.jpg",
+                "khoa": "Trưởng khoa nội tổng hợp"
             },
             {
                 "key": "598a68b778fee204ee51cd32",
-                "name": "ThS BS Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Vegetable_Cart_in_Guntur.jpg",
-                "khoa": "Nội Thần Kinh"
+                "name": "BS Mai Thị Hương Lan",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-22/thumbnail_1511315059_wjmSGjIZwG.jpg",
+                "khoa": "Trưởng khoa Nội Thần Kinh"
             },
             {
                 "key": "598a67c478fee204ee51cd2d",
-                "name": "Nguyễn Tuấn Anh",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Simple_somen.jpg",
-                "khoa": "Chấn thương chỉnh hình"
+                "name": "Lê Thị Kim Ngân",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511173229_p8lnabxNA9.jpg",
+                "khoa": "Trưởng khoa Sản phụ khoa"
             }
         ];
 
@@ -215,8 +225,7 @@ export default class InforScreen extends Component{
                                     source={require('../images/map.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>Bệnh viện Hoàn Mỹ thành lập năm 1997, hiện nay, đã trở thành địa chỉ quen thuộc, đáng tin cậy với người dân ở TP.HCM nói riêng và các tỉnh thành lân cận nói chung. Sứ mệnh của các bác sĩ tại bệnh viện là mang tới dịch vụ chăm sóc sức khỏe chất lượng cao, ứng dụng các công nghệ hiện đại với chi phí hợp lý. Bệnh viện đặc biệt chú trọng đầu tư trang thiết bị, cập nhật công nghệ y khoa nhằm nâng cao năng lực chuyên môn tại các khoa mũi nhọn như Khoa Tim Mạch, Tiêu Hóa, Gan Mật, Xét nghiệm, Phụ Sản, Chấn thương chỉnh hình. Đến nay, Bệnh viện Hoàn Mỹ Sài Gòn đã thực hiện điều trị phẫu thuật thành công không ít các bệnh phức tạp và có mức độ nguy hiểm cao.</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -224,8 +233,23 @@ export default class InforScreen extends Component{
                                     source={require('../images/focus.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>Một số chuyên khoa mũi nhọn:
+                                  {"\n"}  ♥ Khoa Tim Mạch
+                                  {"\n"}  ♥ Khoa Tiêu Hóa
+                                  {"\n"}  ♥ Khoa Gan Mật Tụy
+                                  {"\n"}  ♥ Khoa Ung Bướu
+                                  {"\n"}  ♥ Khoa Chấn Thương Chỉnh Hình
+                                  {"\n"}  ♥ Khoa Ngoại Thần Kinh
+                                  {"\n"}  ♥ Khoa Nội Thần
+                                  {"\n"}  ♥ Khoa Sản Phụ
+                                  {"\n"}  ♥ Khoa Tiết Niệu
+                                  {"\n"}  ♥ Khoa Tai Mũi Họng
+                                  {"\n"}  ♥ Khoa Mắt
+                                  {"\n"}  ♥ Khoa Da Liễu
+                                  {"\n"}  ♥ Khoa Nội Tiết
+                                  {"\n"}  ♥ Khoa Thận Nhân Tạo
+                                  {"\n"}  ♥ Khoa Răng Hàm Mặt
+                                  {"\n"}  ♥ Nhi Khoa</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -233,8 +257,11 @@ export default class InforScreen extends Component{
                                     source={require('../images/1608931-128.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>Một số thành tích đạt được:
+                                   {"\n"}  ♥ Giấy khen về tích cục tham gia Chương trình an sinh xã hội và thực hiện tốt chính sách thuế số 348/QĐ-UBND của UBND Quận Phú Nhuận
+                                   {"\n"}  ♥ Bằng khen về tham gia hưởng ứng Cuộc vận động "Vì người nghèo" và các hoạt động an sinh xã hội TPHCM số 51/QĐ-MTTQ của Ủy Ban Mặt trận Tổ Quốc VN TPHCM
+                                   {"\n"}  ♥ Tuyên dương về tích cực hỗ trợ chăm sóc sức khỏe trẻ em tỉnh Bạc Liêu 2010 - 2014 số 1191/QĐ-UBND của Chủ tịch UBND Tỉnh Bạc Liêu
+                                   {"\n"}  ♥ Đạt được bằng khen tích cực tham gia hỗ trợ Chương trình Xây dựng Nông Thôn Mới huyện Cần Giờ số 752/QĐ-UBND của UBND Quận Phú Nhuận </Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
