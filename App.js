@@ -39,7 +39,7 @@ const ChatStack = StackNavigator({
         },
     }
     , {
-        stateName: 'ListChat', // If you don't give it a name it will just use the value of initialRouteName
+        stateName: 'ListChat', 
         initialRouteName: 'ListChat',
     }
 );
@@ -60,7 +60,7 @@ const BookingStack = StackNavigator({
         },
     }
     , {
-        stateName: 'ListBooking', // If you don't give it a name it will just use the value of initialRouteName
+        stateName: 'ListBooking', 
         initialRouteName: 'ListBooking',
     }
 );

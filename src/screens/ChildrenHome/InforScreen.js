@@ -139,46 +139,58 @@ export default class InforScreen extends Component{
     render() {
         var flatListData = [
             {
-                "key": "598a678278fee204ee51cd2c",
+                "key": "1",
                 "name": "BS Phan Thanh Toàn",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172018_Rloj5f5hRc.jpg",
                 "khoa": "Trưởng khoa Cấp cứu"
             },
             {
-                "key": "598a684f78fee204ee51cd2f",
+                "key": "2",
                 "name": "BS Bùi Quang Đi",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511171841_IfMTPlKROp.jpg",
                 "khoa": "Trưởng khoa khám bệnh"
             },
             {
-                "key": "598a687678fee204ee51cd30",
+                "key": "3",
                 "name": "BS Nguyễn Ngọc Huy",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172111_mSCHY3uZ9K.jpg",
                 "khoa": "Trưởng khoa hồi sức"
             },
             {
-                "key": "598a680178fee204ee51cd2e",
+                "key": "4",
                 "name": "BS Nguyễn Ngọc Thao",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511172336_AI5WNirrsU.jpg",
                 "khoa": "Trưởng khoa Ngoại"
             },
             {
-                "key": "598a688878fee204ee51cd31",
+                "key": "5",
                 "name": "BS Phan Thanh Chương",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-22/thumbnail_1511315079_pDUgWgM0eE.jpg",
                 "khoa": "Trưởng khoa nội tổng hợp"
             },
             {
-                "key": "598a68b778fee204ee51cd32",
+                "key": "6",
                 "name": "BS Mai Thị Hương Lan",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-22/thumbnail_1511315059_wjmSGjIZwG.jpg",
                 "khoa": "Trưởng khoa Nội Thần Kinh"
             },
             {
-                "key": "598a67c478fee204ee51cd2d",
+                "key": "7",
                 "name": "Lê Thị Kim Ngân",
                 "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511173229_p8lnabxNA9.jpg",
                 "khoa": "Trưởng khoa Sản phụ khoa"
+            },
+            {
+                "key": "8",
+                "name": "BS Nguyễn Nhựt Khánh",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511173855_HOnln2pQYG.jpg",
+                "khoa": "Trưởng khoa Dược"
+            },
+            {
+                "key": "9",
+                "name": "PGS TS Nguyễn Minh Hiếu",
+                "imageUrl": "http://www.hoanmysaigon.com/upload/hoanmysaigon.com/images/employee/2017-11-20/thumbnail_1511173072_badoWGswKV.jpg",
+                "khoa": "Trưởng khoa Tim mạch"
             }
         ];
 
@@ -269,17 +281,17 @@ export default class InforScreen extends Component{
                                     source={require('../images/if_Time_Machine-01_72122.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
-                            </View>
-
-                            <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
-                                <Image
-                                    source={require('../images/if_Burn-01_72105.png')}
-                                    style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
-                                />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>Thứ 2 đến thứ 6:
+                                {"\n"}
+                                {"\n"} + Sáng: 7h00 – 11h30
+                                
+                                {"\n"} + Chiều: 12h30 - 16h00
+                                {"\n"}
+                                {"\n"} Ngoài giờ
+                                {"\n"}
+                                {"\n"} + Thứ 2 đến thứ 7: 16h00 – 18h00
+                                {"\n"}
+                                {"\n"} + Chủ nhật: 7h00 - 12h00</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -287,8 +299,7 @@ export default class InforScreen extends Component{
                                     source={require('../images/if_Aiport_Utility-01_72104.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>Wifi : Hoàn Mỹ Sài Gòn Public {"\n"} Pass : 1231234hoanmy</Text>
                             </View>
 
 
@@ -357,11 +368,18 @@ export default class InforScreen extends Component{
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
+                                    source={require('../images/map.png')}
+                                    style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
+                                />
+                                <Text style={{color: '#ffffff'}}>60-60A Phan Xích Long, Phường 1, Q. Phú Nhuận, TP. Hồ Chí Minh</Text>
+                            </View>
+                            
+                            <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
+                                <Image
                                     source={require('../images/if_viber_328079.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>(028) 3990 2468</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -369,8 +387,7 @@ export default class InforScreen extends Component{
                                     source={require('../images/mail.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>contactus.saigon@hoanmy.com</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -378,8 +395,7 @@ export default class InforScreen extends Component{
                                     source={require('../images/if_Globe1_34224.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>284 Cống Quỳnh, Phạm Ngũ Lão, Quận 1, Hồ Chdfgdfgdfí
-                                    Minh</Text>
+                                <Text style={{color: '#ffffff'}}>www.hoanmysaigon.com</Text>
                             </View>
 
                         </View>

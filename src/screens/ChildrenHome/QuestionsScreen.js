@@ -135,17 +135,27 @@ export default class QuestionsScreen extends Component {
             interval: null,
             dataSource: [
                 {
-                    title: 'Title 1',
-                    caption: 'Caption 1',
-                    url: require('../images/1.jpg'),
+                    title: 'Love Bus',
+                    caption: 'Đồng hành, chăm sóc sức khỏe bà con Bình Phước',
+                    url: require('../images/intropic1.jpg'),
                 }, {
-                    title: 'Title 2',
-                    caption: 'Caption 2',
-                    url: require('../images/2.jpg'),
+                    title: 'Hội thảo khoa học',
+                    caption: 'Kĩ thuật điều trị sớm ung thư dạ dày',
+                    url: require('../images/intropic2.jpg'),
                 }, {
-                    title: 'Title 3',
-                    caption: 'Caption 3',
-                    url: require('../images/3.jpg'),
+                    title: '10/2017',
+                    caption: 'Lớp tiền sản "Mẹ đã sẵn sàng"',
+                    url: require('../images/intropic3.jpg'),
+                },
+                {
+                    title: 'Khoa cấp cứu',
+                    caption: 'Cứu sống bệnh nhân nhồi máu cơ tim do biến chứng',
+                    url: require('../images/intropic4.jpg'),
+                },
+                {
+                    title: '12/12/2017',
+                    caption: 'Đạt chứng nhận Six Sigma của Westgard VP',
+                    url: require('../images/intropic5.jpg'),
                 },
             ],
         };
@@ -173,7 +183,31 @@ export default class QuestionsScreen extends Component {
 
         var flatListData = [
             {
-                "key": "598a678278fee204ee51cd2c",
+                "key": "1",
+                "title": "Đang mang bầu bị viêm họng",
+                "userName": "Cao Vân Anh",
+                "userAge": "24",
+                "userTime": "3",
+                "userQuestion": "Bác sĩ cho cháu hỏi, hiện cháo đang mang bầu tuần 21, cháu bị cúm giờ hết cúm rồi nhưng giờ lại chuyển sang viêm họng (rát họng, ho). Việc này có ảnh hưởng tới thai nhi không ạ? làm thế nào để nói lại bình thường? Cháu cảm ơn",
+                "doctorName": "Thân Ngọc Tuấn",
+                "doctorTime": "2",
+                "doctorAnswer": "Chị Vân Anh thân mến,\n Những triệu chứng như chị mô tả là mất tiếng, đau rát họng, ho,... thì nghĩ nhiều tới viêm họng thanh quản. Chị nên đi khám và làm nội soi tai mũi họng để bác sĩ chuyên khoa điều trị dứt điểm. \nKhi dùng thuốc cần khám và hỏi ý kiến bác sĩ trước. Nếu chị có các biểu hiện tức nhiều bụng dưới, ra dịch ,ra huyết âm đạo hay thai đạp ít... thì cần đi khám chuyên khoa sản ngay để bác sĩ đánh giá.Mốc khám thai tiếp theo ở tuần 22 cũng rất quan trọng, chị nên lưu ý đi kiểm tra.\n Chúc chị có một thai kì khỏe mạnh.\n Bác sĩ: Thân Ngọc Tuấn",
+                "category": "Răng Hàm Mặt"
+            },
+            {
+                "key": "2",
+                "title": "Tư vấn sức khỏe",
+                "userName": "Dương Khánh Toàn",
+                "userAge": "37",
+                "userTime": "4",
+                "userQuestion": "Chỉ số Ferritin của tôi rất cao là 897,6 ng/mL. Tôi bị viêm họng",
+                "doctorName": "Hoàng Kim Tuấn",
+                "doctorTime": "1",
+                "doctorAnswer": "em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
+                "category": "Răng Hàm Mặt"
+            },
+            {
+                "key": "3",
                 "title": "Kết quả siêu âm?",
                 "userName": "Nguyễn Minh Hiếu",
                 "userAge": "21",
@@ -185,31 +219,7 @@ export default class QuestionsScreen extends Component {
                 "category": "Răng Hàm Mặt"
             },
             {
-                "key": "598a678278fee204ee51cd2c",
-                "title": "Hỏi cái nè",
-                "userName": "Nguyễn Minh Hiếu",
-                "userAge": "21",
-                "userTime": "3",
-                "userQuestion": "câu hỏi của em là em chả biết hỏi gì cả nha",
-                "doctorName": "Hoàng Kim Tuấn",
-                "doctorTime": "1",
-                "doctorAnswer": "em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
-                "category": "Răng Hàm Mặt"
-            },
-            {
-                "key": "598a678278fee204ee51cd2c",
-                "title": "Kết quả siêu âm?",
-                "userName": "Nguyễn Minh Hiếu",
-                "userAge": "21",
-                "userTime": "3",
-                "userQuestion": "câu hỏi của em là em chả biết hỏi gì cả nha",
-                "doctorName": "Hoàng Kim Tuấn",
-                "doctorTime": "1",
-                "doctorAnswer": "em bị ung thư giai đoạn cuối rồi nha e. chúc mừng em!",
-                "category": "Răng Hàm Mặt"
-            },
-            {
-                "key": "598a678278fee204ee51cd2c",
+                "key": "4",
                 "title": "Kết quả siêu âm?",
                 "userName": "Nguyễn Minh Hiếu",
                 "userAge": "21",
