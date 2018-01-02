@@ -158,7 +158,7 @@ export default class DetailBookingScreen extends Component {
                             <Image source={require('./images/menu.png')} style={styles.iconStyle}/>
                         </TouchableOpacity>
                         <Text style={styles.textStyle}>Đặt lịch khám</Text>
-                        <Image source={require('./images/search.png')} style={styles.iconStyle}/>
+                        <Image source={require('./images/search.png')} style={styles.iconHidden}/>
                     </View>
                 </View>
 
@@ -290,7 +290,11 @@ const styles = StyleSheet.create({
     iconStyle: {
         width: 25,
         height: 25,
-    }
+    },
+    iconHidden: {
+        width: 0,
+        height: 0,
+    },
 })
 
 class FlatListItem extends Component {
@@ -310,7 +314,7 @@ class FlatListItem extends Component {
                         {this.props.item.time}
                     </Text>
                     <Text style={styles.textItem}>
-                        Bệnh nhân {this.props.item.name}
+                        {this.props.item.name}
                     </Text>
                 </View>
             </TouchableOpacity>

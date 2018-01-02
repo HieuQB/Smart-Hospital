@@ -18,47 +18,47 @@ class FlatListItem extends Component {
             <View style={{
                 flex: 1,
                 flexDirection: 'column',
-                elevation:5,
-                backgroundColor:'#ccc',
-                width:120,
-                height:250,
-                margin:10,
-                marginEnd:5,
-                borderRadius:10,
+                elevation: 5,
+                backgroundColor: '#ccc',
+                width: 120,
+                height: 250,
+                margin: 10,
+                marginEnd: 5,
+                borderRadius: 10,
             }}>
                 <Image
                     source={{uri: this.props.item.imageUrl}}
-                    style={[{ width: 120, height: 130 ,borderRadius:10}]}
+                    style={[{width: 120, height: 130, borderRadius: 10}]}
                 />
 
                 <Text style={styles.flatListItem}>{this.props.item.name}</Text>
 
-                <View style={{flexDirection:'row',marginStart:8}}>
+                <View style={{flexDirection: 'row', marginStart: 8}}>
                     <Image
                         source={require('../images/star.png')}
-                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                        style={[{width: 20, height: 20, marginEnd: 1}]}
                     />
                     <Image
                         source={require('../images/star.png')}
-                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                        style={[{width: 20, height: 20, marginEnd: 1}]}
                     />
                     <Image
                         source={require('../images/star.png')}
-                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                        style={[{width: 20, height: 20, marginEnd: 1}]}
                     />
                     <Image
                         source={require('../images/star.png')}
-                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                        style={[{width: 20, height: 20, marginEnd: 1}]}
                     />
                     <Image
                         source={require('../images/star.png')}
-                        style={[{ width: 20, height: 20,marginEnd:1 }]}
+                        style={[{width: 20, height: 20, marginEnd: 1}]}
                     />
                 </View>
 
-                <View style={{height:2, backgroundColor:'#337f9d', marginTop:5}}/>
+                <View style={{height: 2, backgroundColor: '#337f9d', marginTop: 5}}/>
 
-                <View style={{justifyContent:'center', flex:1, alignItems:'center'}}>
+                <View style={{justifyContent: 'center', flex: 1, alignItems: 'center'}}>
                     <Text style={styles.flatListItem}>{this.props.item.khoa}</Text>
                 </View>
             </View>
@@ -68,19 +68,19 @@ class FlatListItem extends Component {
 
 const styles = StyleSheet.create({
     flatListItem: {
-        height:45,
+        height: 45,
         color: 'black',
         padding: 10,
-        paddingBottom:5,
-        paddingEnd:5,
-        paddingTop:5,
+        paddingBottom: 5,
+        paddingEnd: 5,
+        paddingTop: 5,
         fontSize: 14,
-        alignItems:'center',
+        alignItems: 'center',
     }
 });
 
 
-export default class InforScreen extends Component{
+export default class InforScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -113,7 +113,7 @@ export default class InforScreen extends Component{
                     url: require('../images/intropic5.jpg'),
                 },
             ],
-            region:{
+            region: {
                 latitude: 10.8001459,
                 longitude: 106.6142172,
                 latitudeDelta: 0.0922,
@@ -221,23 +221,31 @@ export default class InforScreen extends Component{
                         Thông tin bệnh viện
                     </Text>
                     {/*start Thông tin chi tiết bệnh viện*/}
-                    <View style={{flexDirection: 'row', flex: 1, margin: 5, marginTop: 0}}>
+                    <View style={{flexDirection: 'row', flex: 1, margin: 5, marginTop: 0,}}>
 
 
                         <View style={{
-                            flex: 1,
                             flexDirection: 'column',
                             backgroundColor: '#337f9d',
                             elevation: 5,
-                            borderRadius: 5
-                        }}>
+                            borderRadius: 5,
+                            marginEnd:43,
+                            paddingEnd:43                        }}>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
-                                    source={require('../images/map.png')}
+                                    source={require('../images/info.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>Bệnh viện Hoàn Mỹ thành lập năm 1997, hiện nay, đã trở thành địa chỉ quen thuộc, đáng tin cậy với người dân ở TP.HCM nói riêng và các tỉnh thành lân cận nói chung. Sứ mệnh của các bác sĩ tại bệnh viện là mang tới dịch vụ chăm sóc sức khỏe chất lượng cao, ứng dụng các công nghệ hiện đại với chi phí hợp lý. Bệnh viện đặc biệt chú trọng đầu tư trang thiết bị, cập nhật công nghệ y khoa nhằm nâng cao năng lực chuyên môn tại các khoa mũi nhọn như Khoa Tim Mạch, Tiêu Hóa, Gan Mật, Xét nghiệm, Phụ Sản, Chấn thương chỉnh hình. Đến nay, Bệnh viện Hoàn Mỹ Sài Gòn đã thực hiện điều trị phẫu thuật thành công không ít các bệnh phức tạp và có mức độ nguy hiểm cao.</Text>
+                                <Text style={{textAlign:'justify',color: '#ffffff'}}>Bệnh viện Hoàn Mỹ thành lập năm 1997, hiện nay, đã trở
+                                    thành địa chỉ quen thuộc, đáng tin cậy với người dân ở TP.HCM nói riêng và các tỉnh
+                                    thành lân cận nói chung. Sứ mệnh của các bác sĩ tại bệnh viện là mang tới dịch vụ
+                                    chăm sóc sức khỏe chất lượng cao, ứng dụng các công nghệ hiện đại với chi phí hợp
+                                    lý. Bệnh viện đặc biệt chú trọng đầu tư trang thiết bị, cập nhật công nghệ y khoa
+                                    nhằm nâng cao năng lực chuyên môn tại các khoa mũi nhọn như Khoa Tim Mạch, Tiêu Hóa,
+                                    Gan Mật, Xét nghiệm, Phụ Sản, Chấn thương chỉnh hình. Đến nay, Bệnh viện Hoàn Mỹ Sài
+                                    Gòn đã thực hiện điều trị phẫu thuật thành công không ít các bệnh phức tạp và có mức
+                                    độ nguy hiểm cao.</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -246,22 +254,22 @@ export default class InforScreen extends Component{
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>Một số chuyên khoa mũi nhọn:
-                                  {"\n"}  ♥ Khoa Tim Mạch
-                                  {"\n"}  ♥ Khoa Tiêu Hóa
-                                  {"\n"}  ♥ Khoa Gan Mật Tụy
-                                  {"\n"}  ♥ Khoa Ung Bướu
-                                  {"\n"}  ♥ Khoa Chấn Thương Chỉnh Hình
-                                  {"\n"}  ♥ Khoa Ngoại Thần Kinh
-                                  {"\n"}  ♥ Khoa Nội Thần
-                                  {"\n"}  ♥ Khoa Sản Phụ
-                                  {"\n"}  ♥ Khoa Tiết Niệu
-                                  {"\n"}  ♥ Khoa Tai Mũi Họng
-                                  {"\n"}  ♥ Khoa Mắt
-                                  {"\n"}  ♥ Khoa Da Liễu
-                                  {"\n"}  ♥ Khoa Nội Tiết
-                                  {"\n"}  ♥ Khoa Thận Nhân Tạo
-                                  {"\n"}  ♥ Khoa Răng Hàm Mặt
-                                  {"\n"}  ♥ Nhi Khoa</Text>
+                                    {"\n"} - Khoa Tim Mạch
+                                    {"\n"} - Khoa Tiêu Hóa
+                                    {"\n"} - Khoa Gan Mật Tụy
+                                    {"\n"} - Khoa Ung Bướu
+                                    {"\n"} - Khoa Chấn Thương Chỉnh Hình
+                                    {"\n"} - Khoa Ngoại Thần Kinh
+                                    {"\n"} - Khoa Nội Thần
+                                    {"\n"} - Khoa Sản Phụ
+                                    {"\n"} - Khoa Tiết Niệu
+                                    {"\n"} - Khoa Tai Mũi Họng
+                                    {"\n"} - Khoa Mắt
+                                    {"\n"} - Khoa Da Liễu
+                                    {"\n"} - Khoa Nội Tiết
+                                    {"\n"} - Khoa Thận Nhân Tạo
+                                    {"\n"} - Khoa Răng Hàm Mặt
+                                    {"\n"} - Nhi Khoa</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -270,10 +278,14 @@ export default class InforScreen extends Component{
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>Một số thành tích đạt được:
-                                   {"\n"}  ♥ Giấy khen về tích cục tham gia Chương trình an sinh xã hội và thực hiện tốt chính sách thuế số 348/QĐ-UBND của UBND Quận Phú Nhuận
-                                   {"\n"}  ♥ Bằng khen về tham gia hưởng ứng Cuộc vận động "Vì người nghèo" và các hoạt động an sinh xã hội TPHCM số 51/QĐ-MTTQ của Ủy Ban Mặt trận Tổ Quốc VN TPHCM
-                                   {"\n"}  ♥ Tuyên dương về tích cực hỗ trợ chăm sóc sức khỏe trẻ em tỉnh Bạc Liêu 2010 - 2014 số 1191/QĐ-UBND của Chủ tịch UBND Tỉnh Bạc Liêu
-                                   {"\n"}  ♥ Đạt được bằng khen tích cực tham gia hỗ trợ Chương trình Xây dựng Nông Thôn Mới huyện Cần Giờ số 752/QĐ-UBND của UBND Quận Phú Nhuận </Text>
+                                    {"\n"} {"\n"} - Giấy khen về tích cục tham gia Chương trình an sinh xã hội và thực hiện tốt
+                                    chính sách thuế số 348/QĐ-UBND của UBND Quận Phú Nhuận
+                                    {"\n"} {"\n"} - Bằng khen về tham gia hưởng ứng Cuộc vận động "Vì người nghèo" và các hoạt
+                                    động an sinh xã hội TPHCM số 51/QĐ-MTTQ của Ủy Ban Mặt trận Tổ Quốc VN TPHCM
+                                    {"\n"} {"\n"} - Tuyên dương về tích cực hỗ trợ chăm sóc sức khỏe trẻ em tỉnh Bạc Liêu 2010
+                                    - 2014 số 1191/QĐ-UBND của Chủ tịch UBND Tỉnh Bạc Liêu
+                                    {"\n"} {"\n"} - Đạt được bằng khen tích cực tham gia hỗ trợ Chương trình Xây dựng Nông Thôn
+                                    Mới huyện Cần Giờ số 752/QĐ-UBND của UBND Quận Phú Nhuận </Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -282,16 +294,16 @@ export default class InforScreen extends Component{
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
                                 <Text style={{color: '#ffffff'}}>Thứ 2 đến thứ 6:
-                                {"\n"}
-                                {"\n"} + Sáng: 7h00 – 11h30
-                                
-                                {"\n"} + Chiều: 12h30 - 16h00
-                                {"\n"}
-                                {"\n"} Ngoài giờ
-                                {"\n"}
-                                {"\n"} + Thứ 2 đến thứ 7: 16h00 – 18h00
-                                {"\n"}
-                                {"\n"} + Chủ nhật: 7h00 - 12h00</Text>
+                                    {"\n"}
+                                    {"\n"} + Sáng: 7h00 – 11h30
+
+                                    {"\n"} + Chiều: 12h30 - 16h00
+                                    {"\n"}
+                                    {"\n"} Ngoài giờ
+                                    {"\n"}
+                                    {"\n"} + Thứ 2 đến thứ 7: 16h00 – 18h00
+                                    {"\n"}
+                                    {"\n"} + Chủ nhật: 7h00 - 12h00</Text>
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -299,7 +311,8 @@ export default class InforScreen extends Component{
                                     source={require('../images/if_Aiport_Utility-01_72104.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>Wifi : Hoàn Mỹ Sài Gòn Public {"\n"} Pass : 1231234hoanmy</Text>
+                                <Text style={{color: '#ffffff'}}>Wifi : Hoàn Mỹ Sài Gòn Public {"\n"} Pass :
+                                    1231234hoanmy</Text>
                             </View>
 
 
@@ -363,7 +376,8 @@ export default class InforScreen extends Component{
                             flexDirection: 'column',
                             backgroundColor: '#337f9d',
                             elevation: 5,
-                            borderRadius: 5
+                            borderRadius: 5,
+                            paddingEnd:43
                         }}>
 
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
@@ -371,9 +385,10 @@ export default class InforScreen extends Component{
                                     source={require('../images/map.png')}
                                     style={[{width: 25, height: 25, marginTop: 5, marginStart: 10, marginEnd: 10}]}
                                 />
-                                <Text style={{color: '#ffffff'}}>60-60A Phan Xích Long, Phường 1, Q. Phú Nhuận, TP. Hồ Chí Minh</Text>
+                                <Text style={{color: '#ffffff'}}>60-60A Phan Xích Long, Phường 1, Q. Phú Nhuận, TP. Hồ
+                                    Chí Minh</Text>
                             </View>
-                            
+
                             <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 5}}>
                                 <Image
                                     source={require('../images/if_viber_328079.png')}
@@ -421,7 +436,7 @@ export default class InforScreen extends Component{
                     </Text>
 
                     <MapView
-                        style={{flex:1,height:300}}
+                        style={{flex: 1, height: 300}}
                         initialRegion={this.state.region}>
 
                         <MapView.Marker

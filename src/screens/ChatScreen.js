@@ -66,7 +66,7 @@ export default class ChatScreen extends Component {
                             <Image source={require('./images/menu.png')} style={styles.iconStyle}/>
                         </TouchableOpacity>
                         <Text style={styles.textStyle}>Danh sách bác sĩ</Text>
-                        <Image source={require('./images/search.png')} style={styles.iconStyle}/>
+                        <Image source={require('./images/search.png')} style={styles.iconHidden}/>
                     </View>
                 </View>
 
@@ -139,6 +139,10 @@ const styles = StyleSheet.create({
     iconStyle: {
         width: 25,
         height: 25,
+    },
+    iconHidden: {
+        width: 0,
+        height: 0,
     },
 })
 
