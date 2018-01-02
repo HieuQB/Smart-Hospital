@@ -5,6 +5,10 @@ class FireBase {
     messageRef = null;
     doctorRef = null;
     calendarRef = null;
+    constactRef = null;
+    infoRef = null;
+    questionRef = null;
+    costRef = null;
 
     constructor() {
         const config = {
@@ -29,6 +33,10 @@ class FireBase {
         this.messageRef = firebase.database().ref('messages');
         this.doctorRef = firebase.database().ref('doctor');
         this.calendarRef = firebase.database().ref('calendar');
+        this.constactRef = firebase.database().ref('contact');
+        this.infoRef = firebase.database().ref('info');
+        this.questionRef = firebase.database().ref('question');
+        this.costRef = firebase.database().ref('cost');
     }
 
     setUid(value) {
@@ -76,6 +84,7 @@ class FireBase {
     addDoctor(data) {
         for (let i = 0; i < data.length; i++) {
             this.doctorRef.push({
+                key: data[i].key,
                 name: data[i].name,
                 imageUrl: data[i].imageUrl,
                 khoa: data[i].khoa
@@ -147,6 +156,108 @@ class FireBase {
             date: key.date,
             data: data
         });
+    }
+
+    addContact(data) {
+        this.constactRef.push({
+            address: data.address,
+            phone: data.phone,
+            mail: data.mail,
+            web: data.web
+        });
+    }
+
+    loadContact(callback) {
+        const onReceive = (data) => {
+            const contact = data.val();
+            callback({
+                address: contact.address,
+                phone: contact.phone,
+                mail: contact.mail,
+                web: contact.web
+            });
+        };
+        this.constactRef.on('child_added', onReceive);
+    }
+
+    addInfo(data) {
+        this.infoRef.push({
+            info: data.info,
+            khoa: data.khoa,
+            thanhTich: data.thanhTich,
+            lich: data.lich,
+            wifi: data.wifi
+        });
+    }
+
+    loadInfo(callback) {
+        const onReceive = (data) => {
+            const info = data.val();
+            callback({
+                info: info.info,
+                khoa: info.khoa,
+                thanhTich: info.thanhTich,
+                lich: info.lich,
+                wifi: info.wifi,
+            });
+        };
+        this.infoRef.on('child_added', onReceive);
+    }
+
+    addQuestion(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.questionRef.push({
+                key: data[i].key,
+                title: data[i].title,
+                userName: data[i].userName,
+                userAge: data[i].userAge,
+                userTime: data[i].userTime,
+                userQuestion: data[i].userQuestion,
+                doctorName: data[i].doctorName,
+                doctorTime: data[i].doctorTime,
+                doctorAnswer: data[i].doctorAnswer,
+                category: data[i].category,
+            });
+        }
+    }
+
+    loadQuestion(callback) {
+        const onReceive = (data) => {
+            const question = data.val();
+            callback({
+                key: question.key,
+                title: question.title,
+                userName: question.userName,
+                userAge: question.userAge,
+                userTime: question.userTime,
+                userQuestion: question.userQuestion,
+                doctorName: question.doctorName,
+                doctorTime: question.doctorTime,
+                doctorAnswer: question.doctorAnswer,
+                category: question.category,
+            });
+        };
+        this.questionRef.on('child_added', onReceive);
+    }
+
+    addCost(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.costRef.push({
+                data: data[i].data,
+                title: data[i].title,
+            });
+        }
+    }
+
+    loadCost(callback) {
+        const onReceive = (data) => {
+            const cost = data.val();
+            callback({
+                data: cost.data,
+                title: cost.title,
+            });
+        };
+        this.costRef.on('child_added', onReceive);
     }
 }
 
